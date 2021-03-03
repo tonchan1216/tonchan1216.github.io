@@ -5,9 +5,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `franke.tech`,
-    description: `The personal website of Benedikt Franke`,
-    author: `Benedikt Franke`,
+    title: `portfolio tonchan`,
+    description: `The personal website of tonchan1216`,
+    author: `tonchan1216`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -51,5 +51,23 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-source-graphcms',
+      options: {
+        // Your GraphCMS API endpoint. Available from your project settings.
+        endpoint: process.env.GRAPHCMS_ENDPOINT,
+        // A PAT (Permanent Auth Token) for your project. Required if your project is not available publicly, or you want to scope access to a specific content stage (i.e. draft content).
+        token: process.env.GRAPHCMS_TOKEN
+      },
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+      },
+    },
   ],
 }
