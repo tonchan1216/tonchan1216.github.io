@@ -1,0 +1,9 @@
+fragment Skill on Skill {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  name
+  level
+}
