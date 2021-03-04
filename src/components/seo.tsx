@@ -9,17 +9,17 @@ import React from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { SiteMetaQuery } from "../graphql"
+import "../styles/main.css"
 
 type MetaProps = JSX.IntrinsicElements["meta"]
 
 interface SEOProps {
-  description: string
   lang?: string
   meta?: MetaProps[]
   title: string
 }
 
-function SEO({ description, lang = `en`, meta = [], title }: SEOProps) {
+function SEO({ lang = `en`, meta = [], title }: SEOProps) {
   const { site }: SiteMetaQuery = useStaticQuery(
     graphql`
       query SiteMeta {
@@ -35,7 +35,7 @@ function SEO({ description, lang = `en`, meta = [], title }: SEOProps) {
   )
 
   const siteMetadata = site!.siteMetadata!
-  const metaDescription = description || siteMetadata.description!
+  const metaDescription = siteMetadata.description!
 
   const constantMeta: MetaProps[] = [
     {

@@ -1,38 +1,85 @@
-import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-scroll"
 
-interface HeaderProps {
-  siteTitle: string
+interface Props {}
+
+interface State {
+  isOpen: boolean
 }
 
-const StyledHeader = styled.header`
-  background: rebeccapurple;
-  margin-bottom: 1.45rem;
-`
-
-const Header = ({ siteTitle }: HeaderProps) => (
-  <StyledHeader>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+const Menu = (props: {
+  children: string
+  callback: () => void
+  anchor: string
+}) => (
+  <li>
+    <Link
+      activeClass="active"
+      to={props.anchor}
+      spy={true}
+      smooth={true}
+      onClick={props.callback}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </StyledHeader>
+      {props.children}
+    </Link>
+  </li>
 )
+class Header extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    this.state = {
+      isOpen: false,
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    })
+  }
+
+  render() {
+    return (
+      <header
+        className={"s-header" + (this.state.isOpen ? " menu-is-open" : "")}
+      >
+        <div className="row s-header__nav-wrap">
+          <nav className="s-header__nav">
+            <ul>
+              <Menu callback={this.handleClick} anchor="hero">
+                Home
+              </Menu>
+              <Menu callback={this.handleClick} anchor="about">
+                About
+              </Menu>
+              <Menu callback={this.handleClick} anchor="resume">
+                Resume
+              </Menu>
+              <Menu callback={this.handleClick} anchor="portfolio">
+                Works
+              </Menu>
+              <Menu callback={this.handleClick} anchor="testimonials">
+                Testimonials
+              </Menu>
+            </ul>
+          </nav>
+        </div>
+
+        <a
+          className={
+            "s-header__menu-toggle" + (this.state.isOpen ? " is-clicked" : "")
+          }
+          href="#0"
+          title="Menu"
+          onClick={this.handleClick}
+        >
+          <span className="s-header__menu-icon"></span>
+        </a>
+      </header>
+    )
+  }
+}
 
 export default Header
