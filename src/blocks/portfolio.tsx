@@ -1,6 +1,6 @@
 import React from "react"
 
-const Portfolio = () => (
+const Portfolio: React.FC = () => (
   <section id="portfolio" className="s-portfolio target-section">
     <div className="row s-portfolio__header">
       <div className="column large-12">

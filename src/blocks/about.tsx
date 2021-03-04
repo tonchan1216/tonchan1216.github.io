@@ -1,6 +1,6 @@
 import React from "react"
 
-const About = () => (
+const About: React.FC = () => (
   <section id="about" className="s-about target-section">
     <div className="row">
       <div className="column large-3 tab-12">

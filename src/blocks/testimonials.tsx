@@ -1,6 +1,6 @@
 import React from "react"
 
-const Testimonials = () => (
+const Testimonials: React.FC = () => (
   <section id="testimonials" className="s-testimonials target-section">
     <div className="s-testimonials__bg"></div>
 

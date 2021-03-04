@@ -1,6 +1,6 @@
 import React from "react"
 
-const Resume = () => (
+const Resume: React.FC = () => (
   <section id="resume" className="s-resume target-section">
     <div className="row s-resume__section">
       <div className="column large-3 tab-12">

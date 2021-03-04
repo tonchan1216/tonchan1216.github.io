@@ -6,22 +6,30 @@
  */
 
 import React, { ReactNode } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+// import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Footer from "./footer"
-import { GlobalStyles } from "../globalStyles"
+// import { GlobalStyles } from "../globalStyles"
 
 interface LayoutProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout: React.FC = ({ children }: LayoutProps) => {
+  const menu = [
+    { anchor: "hero", title: "Home" },
+    { anchor: "about", title: "About" },
+    { anchor: "resume", title: "Resume" },
+    { anchor: "portfolio", title: "Works" },
+    { anchor: "testimonials", title: "Testimonials" },
+  ]
+
   return (
     <>
       {/* <GlobalStyles /> */}
 
-      <Header />
+      <Header menu={menu} />
       <main>{children}</main>
       <Footer />
     </>

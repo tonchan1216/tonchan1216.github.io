@@ -19,7 +19,7 @@ interface SEOProps {
   title: string
 }
 
-function SEO({ lang = `en`, meta = [], title }: SEOProps) {
+const SEO = ({ lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
   const { site }: SiteMetaQuery = useStaticQuery(
     graphql`
       query SiteMeta {

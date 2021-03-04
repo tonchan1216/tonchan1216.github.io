@@ -1,8 +1,10 @@
 import React from "react"
-import styled from "styled-components"
+// import styled from "styled-components"
 import { Link } from "react-scroll"
 
-interface Props {}
+interface Props {
+  menu: { anchor: string; title: string }[]
+}
 
 interface State {
   isOpen: boolean
@@ -34,13 +36,13 @@ class Header extends React.Component<Props, State> {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
+  handleClick(): void {
     this.setState({
       isOpen: !this.state.isOpen,
     })
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <header
         className={"s-header" + (this.state.isOpen ? " menu-is-open" : "")}

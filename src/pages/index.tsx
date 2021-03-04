@@ -1,7 +1,6 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 import Hero from "../blocks/hero"
@@ -12,7 +11,7 @@ import Cta from "../blocks/cta"
 import Testimonials from "../blocks/testimonials"
 import Contact from "../blocks/contact"
 
-const IndexPage = () => {
+const IndexPage: React.FC = () => {
   return (
     <Layout>
       <SEO title="Home" />

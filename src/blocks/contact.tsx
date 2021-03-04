@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react"
 
-const Contact = () => (
+const Contact: React.FC = () => (
   <section id="contact" className="s-contact target-section">
     <div className="row s-contact__header">
       <div className="column large-12">

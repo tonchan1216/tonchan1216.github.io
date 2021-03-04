@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react"
-import styled from "styled-components"
+// import styled from "styled-components"
 import { Link } from "react-scroll"
 
 const svgStyle = {
@@ -8,7 +9,7 @@ const svgStyle = {
   //   -ms-filter:
 }
 
-const Hero = () => (
+const Hero: React.FC = () => (
   <section id="hero" className="s-hero target-section">
     <div className="s-hero__bg rellax" data-rellax-speed="-7"></div>
 

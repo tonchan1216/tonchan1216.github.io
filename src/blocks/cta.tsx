@@ -1,6 +1,6 @@
 import React from "react"
 
-const Cta = () => (
+const Cta: React.FC = () => (
   <section className="s-cta">
     <div className="row">
       <div className="column">

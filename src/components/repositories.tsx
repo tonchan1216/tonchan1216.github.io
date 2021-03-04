@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { PinnedReposQuery } from "../graphql"
 import { notEmpty } from "../typeHelpers"
 
-export const Repositories = () => {
+export const Repositories: React.FC = () => {
   const repos: PinnedReposQuery = useStaticQuery(graphql`
     query PinnedRepos {
       github {
