@@ -1,0 +1,19 @@
+fragment Resume on Resume {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  description
+  note {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  date
+  category
+}

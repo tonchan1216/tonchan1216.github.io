@@ -1,22 +1,68 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { skillQuery } from "../graphql"
+import { ResumeQuery } from "../graphql"
 
-const SkillBar = (props: { name: string; parcent: string }): JSX.Element => (
+interface Item {
+  title?: string
+  description?: string
+  date?: string
+  note?: {
+    html?: string
+  }
+}
+
+interface Skill {
+  name?: string
+  percent?: number
+}
+
+const SkillBar = (props: Skill): JSX.Element => (
   <li>
-    <div className={"progress percent" + props.parcent}></div>
+    <div className={"progress percent" + props.percent}></div>
     <strong>{props.name}</strong>
   </li>
 )
 
+const ResumeBlock = (props: { data: Item }) => (
+  <div className="resume-block">
+    <div className="resume-block__header">
+      <h4 className="h3">{props.data.title}</h4>
+      <p className="resume-block__header-meta">
+        <span>{props.data.description}</span>
+        <span className="resume-block__header-date">{props.data.date}</span>
+      </p>
+    </div>
+    <div dangerouslySetInnerHTML={{ __html: props.data.note.html }} />
+  </div>
+)
+
 const Resume: React.FC = () => {
-  const { allGraphCmsSkill }: skillQuery = useStaticQuery(
+  const { skills, careers, educations }: ResumeQuery = useStaticQuery(
     graphql`
-      {
-        allGraphCmsSkill {
+      fragment Item on GraphCMS_Resume {
+        title
+        description
+        date
+        note {
+          html
+        }
+      }
+
+      query resume {
+        skills: allGraphCmsSkill {
           nodes {
             name
             percent
+          }
+        }
+        careers: allGraphCmsResume(filter: { category: { eq: career } }) {
+          nodes {
+            ...Item
+          }
+        }
+        educations: allGraphCmsResume(filter: { category: { eq: education } }) {
+          nodes {
+            ...Item
           }
         }
       }
@@ -30,45 +76,9 @@ const Resume: React.FC = () => {
           <h3 className="section-header-allcaps">Career</h3>
         </div>
         <div className="column large-9 tab-12">
-          <div className="resume-block">
-            <div className="resume-block__header">
-              <h4 className="h3">Dropbox</h4>
-              <p className="resume-block__header-meta">
-                <span>Product Designer</span>
-                <span className="resume-block__header-date">
-                  August 2019 - Present
-                </span>
-              </p>
-            </div>
-
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore vero quidem nobis maxime dolorem aliquam quisquam eum
-              ipsum amet. Vitae aut atque fuga dolorem. Vel voluptatibus fugiat
-              nam. Impedit aperiam nesciunt facilis! Porro architecto dicta
-              inventore tempora ratione quia odio.
-            </p>
-          </div>
-
-          <div className="resume-block">
-            <div className="resume-block__header">
-              <h4 className="h3">Facebook</h4>
-              <p className="resume-block__header-meta">
-                <span>UI/UX Designer</span>
-                <span className="resume-block__header-date">
-                  August 2016 - July 2019
-                </span>
-              </p>
-            </div>
-
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore vero quidem nobis maxime dolorem aliquam quisquam eum
-              ipsum amet. Vitae aut atque fuga dolorem. Vel voluptatibus fugiat
-              nam. Impedit aperiam nesciunt facilis! Porro architecto dicta
-              inventore tempora ratione quia odio.
-            </p>
-          </div>
+          {careers.nodes.map((item: Item) => (
+            <ResumeBlock key={item.title} data={item} />
+          ))}
         </div>
       </div>
 
@@ -77,41 +87,9 @@ const Resume: React.FC = () => {
           <h3 className="section-header-allcaps">Education</h3>
         </div>
         <div className="column large-9 tab-12">
-          <div className="resume-block">
-            <div className="resume-block__header">
-              <h4 className="h3">University of Life</h4>
-              <p className="resume-block__header-meta">
-                <span>Master in Graphic Design</span>
-                <span className="resume-block__header-date">April 2015</span>
-              </p>
-            </div>
-
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore vero quidem nobis maxime dolorem aliquam quisquam eum
-              ipsum amet. Vitae aut atque fuga dolorem. Vel voluptatibus fugiat
-              nam. Impedit aperiam nesciunt facilis! Porro architecto dicta
-              inventore tempora ratione quia odio.
-            </p>
-          </div>
-
-          <div className="resume-block">
-            <div className="resume-block__header">
-              <h4 className="h3">School of Cool Designers</h4>
-              <p className="resume-block__header-meta">
-                <span>B.A. Degree in Graphic Design</span>
-                <span className="resume-block__header-date">August 2012</span>
-              </p>
-            </div>
-
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore vero quidem nobis maxime dolorem aliquam quisquam eum
-              ipsum amet. Vitae aut atque fuga dolorem. Vel voluptatibus fugiat
-              nam. Impedit aperiam nesciunt facilis! Porro architecto dicta
-              inventore tempora ratione quia odio.
-            </p>
-          </div>
+          {educations.nodes.map((item: Item) => (
+            <ResumeBlock key={item.title} data={item} />
+          ))}
         </div>
       </div>
 
@@ -130,11 +108,11 @@ const Resume: React.FC = () => {
             </p>
 
             <ul className="skill-bars-fat">
-              {allGraphCmsSkill.nodes.map((data) => (
+              {skills.nodes.map((skill: Skill) => (
                 <SkillBar
-                  key={data.name}
-                  name={data.name}
-                  parcent={data.percent}
+                  key={skill.name}
+                  name={skill.name}
+                  percent={skill.percent}
                 />
               ))}
             </ul>
