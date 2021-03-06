@@ -24,3 +24,5 @@ public
 # GraphQL generated
 /graphql.json
 /src/graphql.ts
+
+.vscode
