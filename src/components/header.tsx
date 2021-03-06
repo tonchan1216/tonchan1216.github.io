@@ -50,21 +50,15 @@ class Header extends React.Component<Props, State> {
         <div className="row s-header__nav-wrap">
           <nav className="s-header__nav">
             <ul>
-              <Menu callback={this.handleClick} anchor="hero">
-                Home
-              </Menu>
-              <Menu callback={this.handleClick} anchor="about">
-                About
-              </Menu>
-              <Menu callback={this.handleClick} anchor="resume">
-                Resume
-              </Menu>
-              <Menu callback={this.handleClick} anchor="portfolio">
-                Works
-              </Menu>
-              <Menu callback={this.handleClick} anchor="testimonials">
-                Testimonials
-              </Menu>
+              {this.props.menu.map((data) => (
+                <Menu
+                  key={data.anchor}
+                  callback={this.handleClick}
+                  anchor={data.anchor}
+                >
+                  {data.title}
+                </Menu>
+              ))}
             </ul>
           </nav>
         </div>
