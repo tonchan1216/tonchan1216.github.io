@@ -5,5 +5,5 @@ fragment Skill on Skill {
   updatedAt
   publishedAt
   name
-  level
+  percent
 }
