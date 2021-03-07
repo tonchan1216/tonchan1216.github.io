@@ -49,7 +49,7 @@ const Resume: React.FC = () => {
       }
 
       query resume {
-        skills: allGraphCmsSkill {
+        skills: allGraphCmsSkill(sort: { fields: percent, order: DESC }) {
           nodes {
             name
             percent
