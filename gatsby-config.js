@@ -69,5 +69,19 @@ module.exports = {
         showSpinner: false,
       },
     },
+    {
+      resolve: `gatsby-source-qiita`,
+      options: {
+        accessToken: process.env.QIITA_ACCESS_TOKEN,
+        userName: process.env.QIITA_USERNAME,
+        // (optional)
+        // Default is false.
+        fetchPrivate: false,
+        // (optional)
+        // String Array.
+        // Default is [].
+        excludedPostIds: [],
+      },
+    },
   ],
 }
