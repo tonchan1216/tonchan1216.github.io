@@ -83,5 +83,19 @@ module.exports = {
         excludedPostIds: [],
       },
     },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://zenn.dev/tonchan1216/feed`,
+        name: `Zenn`,
+        // Optional
+        // Read parser document: https://github.com/bobby-brennan/rss-parser#readme
+        // parserOption: {
+        // customFields: {
+        // item: ["itunes:duration"],
+        // },
+        // },
+      },
+    },
   ],
 }
