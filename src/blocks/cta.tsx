@@ -1,6 +1,11 @@
 import React from "react"
+import { Content } from "../typeHelpers"
 
-const Cta: React.FC = () => (
+type Props = {
+  contents: Content[]
+}
+
+const Cta: React.FC<Props> = ({ contents }) => (
   <section className="s-cta">
     <div className="row">
       <div className="column">
@@ -11,20 +16,10 @@ const Cta: React.FC = () => (
     </div>
 
     <div className="row cta-content">
-      <div className="column">
-        <p>
-          I can Get advice on the skill market service{" "}
-          <a href="https://coconala.com/users/2309570">coconala</a>. Please feel
-          free to contact me.
-        </p>
-
-        <a
-          href="https://coconala.com/services/1593368?ref=profile_top_service"
-          className="btn btn--primary h-full-width"
-        >
-          Get Started
-        </a>
-      </div>
+      <div
+        className="column"
+        dangerouslySetInnerHTML={{ __html: contents[0].rich.html }}
+      />
     </div>
   </section>
 )

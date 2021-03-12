@@ -1,7 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react"
+import { Content } from "../typeHelpers"
 
-const Contact: React.FC = () => (
+type Props = {
+  contents: Content[]
+}
+
+const Contact: React.FC<Props> = ({ contents }) => (
   <section id="contact" className="s-contact target-section">
     <div className="row s-contact__header">
       <div className="column large-12">

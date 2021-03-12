@@ -14,12 +14,21 @@ import Testimonials from "../blocks/testimonials"
 import Contact from "../blocks/contact"
 
 const IndexPage: React.FC = () => {
-  const { github }: IndexQuery = useStaticQuery(graphql`
+  const { github, contents }: IndexQuery = useStaticQuery(graphql`
     query Index {
       github {
         viewer {
           name
           avatarUrl
+        }
+      }
+      contents: allGraphCmsContents {
+        nodes {
+          id
+          key
+          rich {
+            html
+          }
         }
       }
     }
@@ -28,13 +37,23 @@ const IndexPage: React.FC = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <Hero name={github.viewer.name} />
-      <About avatarUrl={github.viewer.avatarUrl} />
+      <Hero
+        name={github.viewer.name}
+        contents={contents.nodes.filter((data) => data.key == "introduce")}
+      />
+      <About
+        avatarUrl={github.viewer.avatarUrl}
+        contents={contents.nodes.filter((data) => data.key == "about_me")}
+      />
       <Resume />
       <Portfolio />
-      <Cta />
+      <Cta contents={contents.nodes.filter((data) => data.key == "cta")} />
       <Testimonials />
-      <Contact />
+      <Contact
+        contents={contents.nodes.filter(
+          (data) => data.key == "contact_details",
+        )}
+      />
     </Layout>
   )
 }

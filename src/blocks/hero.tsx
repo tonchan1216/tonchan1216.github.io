@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react"
 import { Link } from "react-scroll"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+
+import { Content } from "../typeHelpers"
 
 const svgStyle = {
   fill: "rgba(0, 0, 0, 1)",
@@ -11,9 +14,10 @@ const svgStyle = {
 
 type Props = {
   name: string
+  contents: Content[]
 }
 
-const Hero: React.FC<Props> = ({ name }) => {
+const Hero: React.FC<Props> = ({ name, contents }) => {
   return (
     <section id="hero" className="s-hero target-section">
       <div className="s-hero__bg rellax" data-rellax-speed="-7"></div>
@@ -23,7 +27,7 @@ const Hero: React.FC<Props> = ({ name }) => {
           <div className="s-hero__content-about">
             <h1>I'm {name}.</h1>
 
-            {/* <h3>{HeroQuery.graphCmsContents.markdown_text}</h3> */}
+            <h3 dangerouslySetInnerHTML={{ __html: contents[0].rich.html }} />
 
             <div className="s-hero__content-social">
               <a href="https://github.com/tonchan1216">
