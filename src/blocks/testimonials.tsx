@@ -6,7 +6,6 @@ interface WebVital {
   value: number
   delta: number
   id: string
-  entries: any
 }
 
 const Testimonials: React.FC = () => {
@@ -41,9 +40,24 @@ const Testimonials: React.FC = () => {
       </div>
 
       <div className="row s-testimonials__content">
-        <div className="column">LCP:{lcp}</div>
-        <div className="column">FID:{fid}</div>
-        <div className="column">CLS:{cls}</div>
+        <div className="column">
+          <p>(Loading)</p>
+          <p>LCP</p>
+          <p>Large Contentful Paint</p>
+          <p>{lcp}</p>
+        </div>
+        <div className="column">
+          <p>(Interactivy)</p>
+          <p>FID</p>
+          <p>First Input Delay</p>
+          <p>{fid}</p>
+        </div>
+        <div className="column">
+          <p>(Visual Stability)</p>
+          <p>CLS</p>
+          <p>Cumulative Layout Shift</p>
+          <p>{cls}</p>
+        </div>
       </div>
     </section>
   )

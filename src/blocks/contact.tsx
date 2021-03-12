@@ -19,25 +19,6 @@ const Contact: React.FC = () => (
 
       <div className="column large-4 medium-12">
         <div className="row contact-infos">
-          <div className="column large-12 medium-6 tab-12">
-            <div className="contact-block">
-              <h5 className="contact-block__header">Email</h5>
-              <p className="contact-block__content">
-                <a className="mailtoui" href="mailto:sayhello@ceevee.com">
-                  sayhello@ceevee.com
-                </a>
-              </p>
-            </div>
-          </div>
-          <div className="column large-12 medium-6 tab-12">
-            <div className="contact-block">
-              <h5 className="contact-block__header">Phone</h5>
-              <p className="contact-block__content">
-                <a href="tel:+1975432345">+197 543 2345</a>
-              </p>
-            </div>
-          </div>
-
           <div className="column large-12">
             <a
               href="mailto:sayhello@ceevee.com"
