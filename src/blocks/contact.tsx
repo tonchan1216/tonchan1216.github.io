@@ -16,10 +16,10 @@ const Contact: React.FC<Props> = ({ contents }) => (
 
     <div className="row s-contact__content">
       <div className="column large-7 medium-12">
-        <h4 className="huge-text">
-          Have a new project in mind? Let's collaborate and build something
-          awesome. Let's turn that idea to an even greater product :)
-        </h4>
+        <h4
+          className="huge-text"
+          dangerouslySetInnerHTML={{ __html: contents[0].rich.html }}
+        />
       </div>
 
       <div className="column large-4 medium-12">
