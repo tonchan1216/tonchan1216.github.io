@@ -118,13 +118,13 @@ const Testimonials: React.FC = () => {
           <Description>(Loading)</Description>
           <SandFor>LCP</SandFor>
           <Title>Large Contentful Paint</Title>
-          <Metrics className={getStatus("lcp", lcp)}>{lcp}</Metrics>
+          <Metrics className={getStatus("lcp", lcp)}>{lcp}ms</Metrics>
         </Card>
         <Card className="column">
           <Description>(Interactivy)</Description>
           <SandFor>FID</SandFor>
           <Title>First Input Delay</Title>
-          <Metrics className={getStatus("fid", fid)}>{fid}</Metrics>
+          <Metrics className={getStatus("fid", fid)}>{fid}ms</Metrics>
         </Card>
         <Card className="column">
           <Description>(Visual Stability)</Description>
