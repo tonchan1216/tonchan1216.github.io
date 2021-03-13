@@ -2744,7 +2744,7 @@
      position: relative;
  }
  
- .s-hero__content h3 span, .s-hero__content h3 a {
+ .s-hero__content h3 span, .s-hero__content h3 a, .s-hero__content h3 strong {
      color: white;
  }
  
