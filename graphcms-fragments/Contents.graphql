@@ -1,0 +1,16 @@
+fragment Contents on Contents {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  key
+  rich {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+}

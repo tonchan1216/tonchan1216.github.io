@@ -69,5 +69,33 @@ module.exports = {
         showSpinner: false,
       },
     },
+    {
+      resolve: `gatsby-source-qiita`,
+      options: {
+        accessToken: process.env.QIITA_ACCESS_TOKEN,
+        userName: process.env.QIITA_USERNAME,
+        // (optional)
+        // Default is false.
+        fetchPrivate: false,
+        // (optional)
+        // String Array.
+        // Default is [].
+        excludedPostIds: [],
+      },
+    },
+    {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://zenn.dev/tonchan1216/feed`,
+        name: `Zenn`,
+        // Optional
+        // Read parser document: https://github.com/bobby-brennan/rss-parser#readme
+        // parserOption: {
+        // customFields: {
+        // item: ["itunes:duration"],
+        // },
+        // },
+      },
+    },
   ],
 }

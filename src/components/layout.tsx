@@ -17,19 +17,11 @@ interface LayoutProps {
 }
 
 const Layout: React.FC = ({ children }: LayoutProps) => {
-  const menu = [
-    { anchor: "hero", title: "Home" },
-    { anchor: "about", title: "About" },
-    { anchor: "resume", title: "Resume" },
-    { anchor: "portfolio", title: "Works" },
-    { anchor: "testimonials", title: "Testimonials" },
-  ]
-
   return (
     <>
       {/* <GlobalStyles /> */}
 
-      <Header menu={menu} />
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

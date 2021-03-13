@@ -10,3 +10,11 @@ export function notEmpty<T>(value: T | null | undefined): value is T {
 export function notUndefined<T>(value: T | undefined): value is T {
   return value !== undefined
 }
+
+export interface Content {
+  id?: string
+  key?: string
+  rich?: {
+    html?: string
+  }
+}

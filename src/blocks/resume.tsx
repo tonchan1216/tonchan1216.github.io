@@ -49,7 +49,7 @@ const Resume: React.FC = () => {
       }
 
       query resume {
-        skills: allGraphCmsSkill {
+        skills: allGraphCmsSkill(sort: { fields: percent, order: DESC }) {
           nodes {
             name
             percent
@@ -99,13 +99,7 @@ const Resume: React.FC = () => {
         </div>
         <div className="column large-9 tab-12">
           <div className="resume-block">
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Inventore vero quidem nobis maxime dolorem aliquam quisquam eum
-              ipsum amet. Vitae aut atque fuga dolorem. Vel voluptatibus fugiat
-              nam. Impedit aperiam nesciunt facilis! Porro architecto dicta
-              inventore tempora ratione quia odio.
-            </p>
+            <p>These are my skill set, But I'll update more and more...</p>
 
             <ul className="skill-bars-fat">
               {skills.nodes.map((skill: Skill) => (

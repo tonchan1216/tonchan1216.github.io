@@ -1,14 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 // import styled from "styled-components"
 import { Link } from "react-scroll"
-
-interface Props {
-  menu: { anchor: string; title: string }[]
-}
-
-interface State {
-  isOpen: boolean
-}
 
 const Menu = (props: {
   children: string
@@ -27,55 +19,42 @@ const Menu = (props: {
     </Link>
   </li>
 )
-class Header extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      isOpen: false,
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
 
-  handleClick(): void {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    })
-  }
+const Header: React.FC = () => {
+  const [open, setOpen] = useState(false)
+  const toggle = () => setOpen(!open)
+  const menu = [
+    { anchor: "hero", title: "Home" },
+    { anchor: "about", title: "About" },
+    { anchor: "resume", title: "Resume" },
+    { anchor: "portfolio", title: "Works" },
+    { anchor: "testimonials", title: "Testimonials" },
+  ]
 
-  render(): JSX.Element {
-    return (
-      <header
-        className={"s-header" + (this.state.isOpen ? " menu-is-open" : "")}
+  return (
+    <header className={"s-header" + (open ? " menu-is-open" : "")}>
+      <div className="row s-header__nav-wrap">
+        <nav className="s-header__nav">
+          <ul>
+            {menu.map((data) => (
+              <Menu key={data.anchor} callback={toggle} anchor={data.anchor}>
+                {data.title}
+              </Menu>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <a
+        className={"s-header__menu-toggle" + (open ? " is-clicked" : "")}
+        href="#0"
+        title="Menu"
+        onClick={toggle}
       >
-        <div className="row s-header__nav-wrap">
-          <nav className="s-header__nav">
-            <ul>
-              {this.props.menu.map((data) => (
-                <Menu
-                  key={data.anchor}
-                  callback={this.handleClick}
-                  anchor={data.anchor}
-                >
-                  {data.title}
-                </Menu>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        <a
-          className={
-            "s-header__menu-toggle" + (this.state.isOpen ? " is-clicked" : "")
-          }
-          href="#0"
-          title="Menu"
-          onClick={this.handleClick}
-        >
-          <span className="s-header__menu-icon"></span>
-        </a>
-      </header>
-    )
-  }
+        <span className="s-header__menu-icon"></span>
+      </a>
+    </header>
+  )
 }
 
 export default Header

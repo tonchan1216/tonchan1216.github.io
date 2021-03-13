@@ -1,107 +1,66 @@
-import React from "react"
+import React, { useState } from "react"
+import { getCLS, getFID, getLCP } from "web-vitals"
 
-const Testimonials: React.FC = () => (
-  <section id="testimonials" className="s-testimonials target-section">
-    <div className="s-testimonials__bg"></div>
+interface WebVital {
+  name: string
+  value: number
+  delta: number
+  id: string
+}
 
-    <div className="row s-testimonials__header">
-      <div className="column large-12">
-        <h3>Hear What My Clients Says</h3>
-      </div>
-    </div>
+const Testimonials: React.FC = () => {
+  const [cls, setCls] = useState(0)
+  const [fid, setFid] = useState(0)
+  const [lcp, setLcp] = useState(0)
 
-    <div className="row s-testimonials__content">
-      <div className="column">
-        <div className="swiper-container testimonial-slider">
-          <div className="swiper-wrapper">
-            <div className="testimonial-slider__slide swiper-slide">
-              <div className="testimonial-slider__author">
-                <img
-                  src="images/avatars/user-02.jpg"
-                  alt="Author image"
-                  className="testimonial-slider__avatar"
-                />
-                <cite className="testimonial-slider__cite">
-                  <strong>Tim Cook</strong>
-                  <span>CEO, Apple</span>
-                </cite>
-              </div>
-              <p>
-                Molestiae incidunt consequatur quis ipsa autem nam sit enim
-                magni. Voluptas tempore rem. Explicabo a quaerat sint autem
-                dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga
-                rem nihil nostrum. Laudantium quia consequatur molestias
-                delectus culpa.
-              </p>
-            </div>
+  const changeValue = (data: WebVital) => {
+    if (data.name == "CLS") {
+      setCls(data.value)
+    } else if (data.name == "FID") {
+      setFid(data.value)
+    } else if (data.name == "LCP") {
+      setLcp(data.value)
+    } else {
+      console.log(data)
+    }
+  }
 
-            <div className="testimonial-slider__slide swiper-slide">
-              <div className="testimonial-slider__author">
-                <img
-                  src="images/avatars/user-03.jpg"
-                  alt="Author image"
-                  className="testimonial-slider__avatar"
-                />
-                <cite className="testimonial-slider__cite">
-                  <strong>Sundar Pichai</strong>
-                  <span>CEO, Google</span>
-                </cite>
-              </div>
-              <p>
-                Excepturi nam cupiditate culpa doloremque deleniti repellat.
-                Veniam quos repellat voluptas animi adipisci. Nisi eaque
-                consequatur. Voluptatem dignissimos ut ducimus accusantium
-                perspiciatis. Quasi voluptas eius distinctio. Atque eos maxime.
-              </p>
-            </div>
+  getCLS(changeValue)
+  getFID(changeValue)
+  getLCP(changeValue)
 
-            <div className="testimonial-slider__slide swiper-slide">
-              <div className="testimonial-slider__author">
-                <img
-                  src="images/avatars/user-04.jpg"
-                  alt="Author image"
-                  className="testimonial-slider__avatar"
-                />
-                <cite className="testimonial-slider__cite">
-                  <strong>Satya Nadella</strong>
-                  <span>CEO, Microsoft</span>
-                </cite>
-              </div>
-              <p>
-                Repellat dignissimos libero. Qui sed at corrupti expedita
-                voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                Autem eaque officia cum exercitationem sunt voluptatum
-                accusamus. Quasi voluptas eius distinctio. Voluptatem
-                dignissimos ut.
-              </p>
-            </div>
+  return (
+    <section id="testimonials" className="s-testimonials target-section">
+      <div className="s-testimonials__bg"></div>
 
-            <div className="testimonial-slider__slide swiper-slide">
-              <div className="testimonial-slider__author">
-                <img
-                  src="images/avatars/user-05.jpg"
-                  alt="Author image"
-                  className="testimonial-slider__avatar"
-                />
-                <cite className="testimonial-slider__cite">
-                  <strong>Jeff Bezos</strong>
-                  <span>CEO, Amazon</span>
-                </cite>
-              </div>
-              <p>
-                Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac
-                augue. Fusce vel dui. In ac felis quis tortor malesuada pretium.
-                Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita
-                voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-              </p>
-            </div>
-          </div>
-
-          <div className="swiper-pagination"></div>
+      <div className="row s-testimonials__header">
+        <div className="column large-12">
+          <h3>Here How Performance My Web achieve</h3>
         </div>
       </div>
-    </div>
-  </section>
-)
+
+      <div className="row s-testimonials__content">
+        <div className="column">
+          <p>(Loading)</p>
+          <p>LCP</p>
+          <p>Large Contentful Paint</p>
+          <p>{lcp}</p>
+        </div>
+        <div className="column">
+          <p>(Interactivy)</p>
+          <p>FID</p>
+          <p>First Input Delay</p>
+          <p>{fid}</p>
+        </div>
+        <div className="column">
+          <p>(Visual Stability)</p>
+          <p>CLS</p>
+          <p>Cumulative Layout Shift</p>
+          <p>{cls}</p>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default Testimonials
