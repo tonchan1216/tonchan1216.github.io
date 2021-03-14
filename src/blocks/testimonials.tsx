@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
 import { getCLS, getFID, getLCP } from "web-vitals"
@@ -50,6 +50,14 @@ const Metrics = styled.p`
 `
 
 const Testimonials: React.FC = () => {
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      getCLS(changeValue)
+      getFID(changeValue)
+      getLCP(changeValue)
+    }
+  })
+
   const [cls, setCls] = useState(0)
   const [fid, setFid] = useState(0)
   const [lcp, setLcp] = useState(0)
@@ -62,7 +70,6 @@ const Testimonials: React.FC = () => {
     } else if (data.name == "LCP" && lcp == 0) {
       setLcp(Math.round(data.value))
     }
-    // console.log(data)
   }
 
   const getStatus = (metrics: string, value: number) => {
@@ -95,10 +102,6 @@ const Testimonials: React.FC = () => {
         return "success"
     }
   }
-
-  getCLS(changeValue)
-  getFID(changeValue)
-  getLCP(changeValue)
 
   return (
     <section id="testimonials" className="s-testimonials target-section">
