@@ -34,6 +34,7 @@ module.exports = {
         fetchOptions: {},
       },
     },
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
