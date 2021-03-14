@@ -1,4 +1,6 @@
 import React from "react"
+import styled from "styled-components"
+
 import { useStaticQuery, graphql } from "gatsby"
 import { QiitaQuery } from "../graphql"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -14,28 +16,103 @@ interface Qiita {
   url?: string
 }
 
+const Tag = styled.span`
+  font-size: 70%;
+  margin: 0 1%;
+  background-color: grey;
+  color: white;
+  border-radius: 10%;
+  padding: 2px;
+`
+
+const Item = styled.div`
+  a {
+    display: block;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  a::before {
+    z-index: 1;
+    content: "";
+    display: block;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all, 0.5s;
+    transition: all, 0.5s;
+  }
+
+  a::after {
+    z-index: 1;
+    content: "...";
+    font-family: var(--font-2);
+    font-weight: 300;
+    font-size: 3rem;
+    color: white;
+    display: block;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+  }
+
+  &:hover a::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover a::after {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  p {
+    margin-bottom: var(--vspace-0_25);
+  }
+`
+
 const Folio = (props: { data: Qiita }) => (
-  <div className="column folio-item">
-    <a
-      href={props.data.url}
-      className="folio-item__thumb"
-      target="_blank"
-      rel="noreferrer"
-    >
+  <Item className="column">
+    <a href={props.data.url} target="_blank" rel="noreferrer">
       <div>
-        <span>
-          <FontAwesomeIcon icon={faThumbsUp} />
-          {props.data.likes_count}
-        </span>
-        <p className="folio-tag">
+        <p>
+          <span>
+            <FontAwesomeIcon icon={faThumbsUp} />
+            {props.data.likes_count}
+          </span>
+
           {props.data.tags.map((tag) => (
-            <span key={tag.name}>{tag.name}</span>
+            <Tag key={tag.name}>{tag.name}</Tag>
           ))}
         </p>
+
+        <span>{props.data.title}</span>
       </div>
-      <div>{props.data.title}</div>
     </a>
-  </div>
+  </Item>
 )
 
 const Portfolio: React.FC = () => {
