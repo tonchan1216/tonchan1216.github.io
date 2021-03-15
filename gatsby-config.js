@@ -96,5 +96,11 @@ module.exports = {
         // },
       },
     },
+    {
+      resolve: `gatsby-plugin-sass`,
+      // options: {
+      // outputStyle: "compressed", // nested, expanded, compact, compressed,
+      // },
+    },
   ],
 }
