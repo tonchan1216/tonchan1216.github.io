@@ -37,20 +37,34 @@ const Section = styled.section`
 
 const Tag = styled.span`
   font-size: 70%;
-  margin: 0 1%;
+  margin: 1%;
   background-color: grey;
   color: white;
   border-radius: 10%;
   padding: 2px;
+  line-height: 150%;
 `
 
 const Item = styled.div`
+  border-radius: 10%;
+  background-color: white;
+  box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.5);
+
   a {
-    display: block;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
     height: 100%;
+    text-align: center;
+    padding: 5% 2%;
+
+    & > span:nth-of-type(2) {
+      // position: absolute;
+      // bottom: 5%;
+    }
   }
 
   a::before {
@@ -69,6 +83,7 @@ const Item = styled.div`
     height: 100%;
     -webkit-transition: all, 0.5s;
     transition: all, 0.5s;
+    border-radius: 10%;
   }
 
   a::after {
@@ -110,24 +125,27 @@ const Item = styled.div`
 
   p {
     margin-bottom: var(--vspace-0_25);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 `
 
 const Folio = (props: { data: Qiita }) => (
   <Item className="column">
     <a href={props.data.url} target="_blank" rel="noreferrer">
-      <div>
-        <span>
-          <FontAwesomeIcon icon={faThumbsUp} />x{props.data.likes_count}{" "}
-        </span>
-
-        <span>{props.data.title}</span>
-        <p>
-          {props.data.tags.map((tag) => (
-            <Tag key={tag.name}>{tag.name}</Tag>
-          ))}
-        </p>
-      </div>
+      {/* <div> */}
+      <span>{props.data.title}</span>
+      <p>
+        {props.data.tags.map((tag) => (
+          <Tag key={tag.name}>{tag.name}</Tag>
+        ))}
+      </p>
+      <span>
+        <FontAwesomeIcon icon={faThumbsUp} /> {props.data.likes_count}
+      </span>
+      {/* </div> */}
     </a>
   </Item>
 )
