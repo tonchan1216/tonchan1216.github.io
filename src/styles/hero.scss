@@ -172,6 +172,7 @@
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: white;
+  cursor: pointer;
 
   &:hover .scroll-text::after,
   &:focus .scroll-text::after {
