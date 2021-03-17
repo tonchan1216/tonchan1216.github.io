@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Loader from "react-loader-spinner"
+import { BgQuery } from "../graphql"
 
 import { getCLS, getFID, getLCP } from "web-vitals"
 
@@ -24,11 +26,11 @@ const Section = styled.section`
     color: white;
   }
 
-  & > div {
+  div.row {
     position: relative;
   }
 
-  & > div:first-child {
+  & > div:nth-child(2) {
     text-align: center;
     margin-bottom: var(--vspace-2);
   }
@@ -38,8 +40,7 @@ const Section = styled.section`
     min-width: 0;
   }
 `
-
-const BackGround = styled.div`
+const BackGround = styled.div<{ url: string }>`
   display: block;
   position: absolute;
   top: 0;
@@ -48,7 +49,7 @@ const BackGround = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../images/testimonials-bg-3000.jpg);
+  background-image: url(${(props) => props.url});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -83,6 +84,10 @@ const Card = styled.div`
   .error {
     color: var(--color-error);
   }
+
+  div {
+    text-align: center;
+  }
 `
 
 const Description = styled.p`
@@ -112,7 +117,7 @@ const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
   }
 
   if (status == "loading") {
-    return <Loader type="TailSpin" />
+    return <Loader type="TailSpin" color="#00BFFF" />
   } else {
     return (
       <p style={MetricsStyle} className={status}>
@@ -142,6 +147,8 @@ const Testimonials: React.FC = () => {
       setFid(Math.round(data.value))
     } else if (data.name == "LCP" && lcp == -1) {
       setLcp(Math.round(data.value))
+    } else {
+      console.log(data)
     }
   }
 
@@ -180,9 +187,18 @@ const Testimonials: React.FC = () => {
     }
   }
 
+  const { file }: BgQuery = useStaticQuery(graphql`
+    query Bg {
+      file(name: { eq: "testimonials-bg-3000" }) {
+        id
+        publicURL
+      }
+    }
+  `)
+
   return (
     <Section id="testimonials" className="target-section">
-      <BackGround />
+      <BackGround url={file.publicURL} />
 
       <div className="row">
         <div className="column large-12">
