@@ -1,0 +1,221 @@
+/* ===================================================================
+  * # footer
+  *
+  * ------------------------------------------------------------------- */
+
+.s-footer {
+  background-color: var(--color-gray-18);
+  padding-top: var(--vspace-1);
+  padding-bottom: var(--vspace-3);
+  color: rgba(255, 255, 255, 0.2);
+  position: relative;
+
+  .row {
+    padding-top: var(--vspace-1);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  a {
+    color: white;
+
+    &:hover,
+    &:focus {
+      color: var(--color-2);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------- 
+   * ## footer social
+   * ------------------------------------------------------------------- */
+
+.s-footer__social {
+  list-style: none;
+  font-size: var(--text-lg);
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-flow: row wrap;
+  margin: 0 0 0 0.4rem;
+  position: relative;
+  top: -6%;
+
+  a {
+    color: white;
+
+    &:focus,
+    &:hover {
+      color: var(--color-2);
+    }
+  }
+
+  li {
+    padding-left: 0;
+    margin-right: 1.6rem;
+  }
+}
+
+/* ------------------------------------------------------------------- 
+   * ## copyright
+   * ------------------------------------------------------------------- */
+
+.ss-copyright {
+  z-index: 2;
+  -ms-flex-order: -1;
+  -webkit-box-ordinal-group: 0;
+  order: -1;
+  margin-right: auto;
+  position: relative;
+
+  span {
+    font-size: var(--text-sm);
+    display: inline-block;
+
+    &::after {
+      content: "|";
+      display: inline-block;
+      padding: 0 0.8rem 0 1rem;
+      color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------- 
+   * ## go top
+   * ------------------------------------------------------------------- */
+
+.ss-go-top {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  position: fixed;
+  bottom: 8rem;
+  right: 6.4rem;
+
+  a {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 0 none;
+    height: 6.4rem;
+    width: 6.4rem;
+    border-radius: 50%;
+    background-color: #050505;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-1);
+    }
+  }
+
+  svg {
+    height: 2.4rem;
+    width: 2.4rem;
+
+    path {
+      fill: white;
+    }
+  }
+
+  .active {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ------------------------------------------------------------------- 
+   * responsive:
+   * footer
+   * ------------------------------------------------------------------- */
+@media screen and (max-width: 1200px) {
+  .s-footer {
+    padding-bottom: var(--vspace-2_5);
+  }
+
+  .ss-go-top {
+    bottom: 4rem;
+    right: 3.2rem;
+
+    a {
+      height: 6rem;
+      width: 6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .s-footer {
+    padding-bottom: var(--vspace-2);
+  }
+
+  .s-footer__social {
+    margin-left: 0;
+    margin-bottom: var(--vspace-0_5);
+    top: 0;
+  }
+
+  .ss-copyright {
+    -ms-flex-order: 0;
+    -webkit-box-ordinal-group: 1;
+    order: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .ss-go-top {
+    a {
+      height: 5.2rem;
+      width: 5.2rem;
+    }
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .ss-copyright span {
+    display: block;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .ss-go-top {
+    right: 2.4rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .s-footer__social {
+    font-size: var(--text-md);
+
+    li {
+      margin-right: 1.4rem;
+    }
+  }
+}
