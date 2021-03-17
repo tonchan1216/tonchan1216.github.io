@@ -16,22 +16,55 @@ interface Qiita {
   url?: string
 }
 
+const Section = styled.section`
+  background-color: var(--color-gray-1);
+  padding-top: calc(6 * var(--space));
+  padding-bottom: var(--vspace-5);
+
+  h3 {
+    margin-top: 0;
+  }
+
+  & > div:first-child {
+    text-align: center;
+  }
+
+  & > div:nth-child(2) {
+    max-width: 1180px;
+    margin-top: var(--vspace-2_5);
+  }
+`
+
 const Tag = styled.span`
   font-size: 70%;
-  margin: 0 1%;
+  margin: 1%;
   background-color: grey;
   color: white;
   border-radius: 10%;
   padding: 2px;
+  line-height: 150%;
 `
 
 const Item = styled.div`
+  border-radius: 10%;
+  background-color: white;
+  box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.5);
+
   a {
-    display: block;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     position: relative;
     overflow: hidden;
     height: 100%;
+    text-align: center;
+    padding: 5% 2%;
+
+    & > span:nth-of-type(2) {
+      // position: absolute;
+      // bottom: 5%;
+    }
   }
 
   a::before {
@@ -50,6 +83,7 @@ const Item = styled.div`
     height: 100%;
     -webkit-transition: all, 0.5s;
     transition: all, 0.5s;
+    border-radius: 10%;
   }
 
   a::after {
@@ -91,26 +125,27 @@ const Item = styled.div`
 
   p {
     margin-bottom: var(--vspace-0_25);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
 `
 
 const Folio = (props: { data: Qiita }) => (
   <Item className="column">
     <a href={props.data.url} target="_blank" rel="noreferrer">
-      <div>
-        <p>
-          <span>
-            <FontAwesomeIcon icon={faThumbsUp} />
-            {props.data.likes_count}
-          </span>
-
-          {props.data.tags.map((tag) => (
-            <Tag key={tag.name}>{tag.name}</Tag>
-          ))}
-        </p>
-
-        <span>{props.data.title}</span>
-      </div>
+      {/* <div> */}
+      <span>{props.data.title}</span>
+      <p>
+        {props.data.tags.map((tag) => (
+          <Tag key={tag.name}>{tag.name}</Tag>
+        ))}
+      </p>
+      <span>
+        <FontAwesomeIcon icon={faThumbsUp} /> {props.data.likes_count}
+      </span>
+      {/* </div> */}
     </a>
   </Item>
 )
@@ -138,18 +173,18 @@ const Portfolio: React.FC = () => {
     `,
   )
   return (
-    <section id="portfolio" className="s-portfolio target-section">
-      <div className="row s-portfolio__header">
+    <Section id="portfolio" className="target-section">
+      <div className="row">
         <div className="column large-12">
           <h3>A Few Of My Latest Publication</h3>
         </div>
       </div>
-      <div className="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack folio-list">
+      <div className="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack">
         {qiita.allQiitaPost.nodes.map((data: Qiita) => (
           <Folio key={data.id} data={data} />
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 

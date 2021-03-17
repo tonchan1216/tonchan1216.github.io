@@ -15,7 +15,7 @@ node_modules/
 .eslintcache
 
 # dotenv environment variables file
-.env.development
+.env.*
 
 # gatsby files
 .cache/
