@@ -35,6 +35,15 @@ jobs:
 
     - name: build
       run: yarn run build
+      env:
+          FIRST_NAME: Mona
+          middle_name: The
+          Last_Name: Octocat
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GRAPHCMS_ENDPOINT: ${{ secrets.GRAPHCMS_ENDPOINT }}
+          GRAPHCMS_TOKEN: ${{ secrets.GRAPHCMS_TOKEN }}
+          QIITA_ACCESS_TOKEN: ${{ secrets.QIITA_ACCESS_TOKEN }}
+          QIITA_USERNAME: ${{ secrets.QIITA_USERNAME }}
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
