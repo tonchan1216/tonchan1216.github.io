@@ -3,6 +3,7 @@ import React from "react"
 import { Link } from "react-scroll"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import styled from "styled-components"
 
 import { Content } from "../typeHelpers"
 
@@ -12,15 +13,63 @@ const svgStyle = {
   //   -ms-filter:
 }
 
+const BackgroundImage = styled.div<{ url: string }>`
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.url});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.5;
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(360deg, black 15%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.4;
+  }
+`
+
 type Props = {
   name: string
+  url: string
   contents: Content[]
 }
 
-const Hero: React.FC<Props> = ({ name, contents }) => {
+const Hero: React.FC<Props> = ({ name, url, contents }) => {
   return (
     <section id="hero" className="s-hero target-section">
-      <div className="s-hero__bg rellax" data-rellax-speed="-7"></div>
+      <BackgroundImage
+        className="rellax"
+        data-rellax-speed="-7"
+        url={url}
+      ></BackgroundImage>
 
       <div className="row s-hero__content">
         <div className="column">
