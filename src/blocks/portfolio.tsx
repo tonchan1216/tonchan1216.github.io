@@ -16,6 +16,62 @@ interface Qiita {
   url?: string
 }
 
+const Folio = (props: { data: Qiita }) => (
+  <Item className="column">
+    <a href={props.data.url} target="_blank" rel="noreferrer">
+      {/* <div> */}
+      <span>{props.data.title}</span>
+      <p>
+        {props.data.tags.map((tag) => (
+          <Tag key={tag.name}>{tag.name}</Tag>
+        ))}
+      </p>
+      <span>
+        <FontAwesomeIcon icon={faThumbsUp} /> {props.data.likes_count}
+      </span>
+      {/* </div> */}
+    </a>
+  </Item>
+)
+
+const Portfolio: React.FC = () => {
+  const qiita: QiitaQuery = useStaticQuery(
+    graphql`
+      query Qiita {
+        allQiitaPost(
+          filter: { likes_count: { gt: 0 } }
+          sort: { fields: likes_count, order: DESC }
+          limit: 8
+        ) {
+          nodes {
+            id
+            title
+            likes_count
+            tags {
+              name
+            }
+            url
+          }
+        }
+      }
+    `,
+  )
+  return (
+    <Section id="portfolio" className="target-section">
+      <div className="row">
+        <div className="column large-12">
+          <h3>A Few Of My Latest Publication</h3>
+        </div>
+      </div>
+      <div className="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack">
+        {qiita.allQiitaPost.nodes.map((data: Qiita) => (
+          <Folio key={data.id} data={data} />
+        ))}
+      </div>
+    </Section>
+  )
+}
+
 const Section = styled.section`
   background-color: var(--color-gray-1);
   padding-top: calc(6 * var(--space));
@@ -131,61 +187,5 @@ const Item = styled.div`
     align-items: center;
   }
 `
-
-const Folio = (props: { data: Qiita }) => (
-  <Item className="column">
-    <a href={props.data.url} target="_blank" rel="noreferrer">
-      {/* <div> */}
-      <span>{props.data.title}</span>
-      <p>
-        {props.data.tags.map((tag) => (
-          <Tag key={tag.name}>{tag.name}</Tag>
-        ))}
-      </p>
-      <span>
-        <FontAwesomeIcon icon={faThumbsUp} /> {props.data.likes_count}
-      </span>
-      {/* </div> */}
-    </a>
-  </Item>
-)
-
-const Portfolio: React.FC = () => {
-  const qiita: QiitaQuery = useStaticQuery(
-    graphql`
-      query Qiita {
-        allQiitaPost(
-          filter: { likes_count: { gt: 0 } }
-          sort: { fields: likes_count, order: DESC }
-          limit: 8
-        ) {
-          nodes {
-            id
-            title
-            likes_count
-            tags {
-              name
-            }
-            url
-          }
-        }
-      }
-    `,
-  )
-  return (
-    <Section id="portfolio" className="target-section">
-      <div className="row">
-        <div className="column large-12">
-          <h3>A Few Of My Latest Publication</h3>
-        </div>
-      </div>
-      <div className="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack">
-        {qiita.allQiitaPost.nodes.map((data: Qiita) => (
-          <Folio key={data.id} data={data} />
-        ))}
-      </div>
-    </Section>
-  )
-}
 
 export default Portfolio

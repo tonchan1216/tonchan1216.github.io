@@ -7,10 +7,6 @@ type Props = {
   contents: Content[]
 }
 
-const AboutHeader = styled.div`
-  text-align: center;
-`
-
 const About: React.FC<Props> = ({ avatarUrl, contents }) => {
   return (
     <section id="about" className="s-about target-section">
@@ -26,5 +22,9 @@ const About: React.FC<Props> = ({ avatarUrl, contents }) => {
     </section>
   )
 }
+
+const AboutHeader = styled.div`
+  text-align: center;
+`
 
 export default About
