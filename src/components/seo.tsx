@@ -7,10 +7,10 @@ type MetaProps = JSX.IntrinsicElements["meta"]
 
 interface SEOProps {
   title: string
-  links: { url: string; as: string }[]
+  links?: { url: string; as: string }[]
 }
 
-const SEO = ({ title, links }: SEOProps): JSX.Element => {
+const SEO = ({ title, links = [] }: SEOProps): JSX.Element => {
   const { site }: SiteMetaQuery = useStaticQuery(
     graphql`
       query SiteMeta {
