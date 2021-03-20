@@ -8,13 +8,14 @@ module.exports = {
     title: `portfolio tonchan`,
     description: `The personal website of tonchan1216`,
     author: `tonchan1216`,
+    lang: `ja`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet-async`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -47,7 +47,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Home" links={[{ url: herobg.publicURL, as: "image" }]} />
       <Hero
         name={github.viewer.name}
         url={herobg.publicURL}
