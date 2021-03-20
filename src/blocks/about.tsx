@@ -20,7 +20,7 @@ const About: React.FC<Props> = ({ avatarUrl, contents }) => {
         </AboutHeader>
         <div className="column large-9 tab-12 s-about__content">
           <h3>About Me</h3>
-          <p dangerouslySetInnerHTML={{ __html: contents[0].rich.html }} />
+          <div dangerouslySetInnerHTML={{ __html: contents[0].rich.html }} />
         </div>
       </div>
     </section>
