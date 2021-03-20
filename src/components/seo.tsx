@@ -1,24 +1,16 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
-import Helmet from "react-helmet"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 import { useStaticQuery, graphql } from "gatsby"
 import { SiteMetaQuery } from "../graphql"
 
 type MetaProps = JSX.IntrinsicElements["meta"]
 
 interface SEOProps {
-  lang?: string
-  meta?: MetaProps[]
   title: string
+  links: { url: string; as: string }[]
 }
 
-const SEO = ({ lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
+const SEO = ({ title, links }: SEOProps): JSX.Element => {
   const { site }: SiteMetaQuery = useStaticQuery(
     graphql`
       query SiteMeta {
@@ -27,6 +19,7 @@ const SEO = ({ lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
             title
             description
             author
+            lang
           }
         }
       }
@@ -72,14 +65,20 @@ const SEO = ({ lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
   ]
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${siteMetadata.title}`}
-      meta={constantMeta.concat(meta)}
-    />
+    <HelmetProvider>
+      <Helmet>
+        <meta httpEquiv="content-language" content={siteMetadata.lang} />
+        <title>
+          {title} | {siteMetadata.title}
+        </title>
+        {constantMeta.map((data, index) => (
+          <meta key={index} name={data.name} content={data.content} />
+        ))}
+        {links.map((data, index) => (
+          <link key={index} rel="preload" href={data.url} as={data.as} />
+        ))}
+      </Helmet>
+    </HelmetProvider>
   )
 }
 

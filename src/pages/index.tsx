@@ -14,7 +14,12 @@ import Testimonials from "../blocks/testimonials"
 import Contact from "../blocks/contact"
 
 const IndexPage: React.FC = () => {
-  const { github, contents }: IndexQuery = useStaticQuery(graphql`
+  const {
+    github,
+    contents,
+    herobg,
+    testbg,
+  }: IndexQuery = useStaticQuery(graphql`
     query Index {
       github {
         viewer {
@@ -31,14 +36,21 @@ const IndexPage: React.FC = () => {
           }
         }
       }
+      herobg: file(name: { eq: "header-bg-3000" }) {
+        publicURL
+      }
+      testbg: file(name: { eq: "testimonials-bg-3000" }) {
+        publicURL
+      }
     }
   `)
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Home" links={[{ url: herobg.publicURL, as: "image" }]} />
       <Hero
         name={github.viewer.name}
+        url={herobg.publicURL}
         contents={contents.nodes.filter((data) => data.key == "introduce")}
       />
       <About
@@ -48,7 +60,7 @@ const IndexPage: React.FC = () => {
       <Resume />
       <Portfolio />
       <Cta contents={contents.nodes.filter((data) => data.key == "cta")} />
-      <Testimonials />
+      <Testimonials url={testbg.publicURL} />
       <Contact
         contents={contents.nodes.filter(
           (data) => data.key == "contact_details",

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Loader from "react-loader-spinner"
-import { BgQuery } from "../graphql"
 
 import { getCLS, getFID, getLCP } from "web-vitals"
 
@@ -127,7 +125,7 @@ const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
   }
 }
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC<{ url: string }> = ({ url }) => {
   useEffect(() => {
     if (typeof window !== `undefined`) {
       getCLS(changeValue)
@@ -188,18 +186,9 @@ const Testimonials: React.FC = () => {
     }
   }
 
-  const { file }: BgQuery = useStaticQuery(graphql`
-    query Bg {
-      file(name: { eq: "testimonials-bg-3000" }) {
-        id
-        publicURL
-      }
-    }
-  `)
-
   return (
     <Section id="testimonials" className="target-section">
-      <BackGround url={file.publicURL} />
+      <BackGround url={url} />
 
       <div className="row">
         <div className="column large-12">
