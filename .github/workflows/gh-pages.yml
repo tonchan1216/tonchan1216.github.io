@@ -46,6 +46,7 @@ jobs:
           GRAPHCMS_TOKEN: ${{ secrets.GRAPHCMS_TOKEN }}
           QIITA_ACCESS_TOKEN: ${{ secrets.QIITA_ACCESS_TOKEN }}
           QIITA_USERNAME: ${{ secrets.QIITA_USERNAME }}
+          GA_ID: ${{ secrets.GA_ID }}
 
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
