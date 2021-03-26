@@ -758,69 +758,6 @@ textarea {
   padding: 0;
 }
 
-/* flex row containers utility classes
-  */
-
-.row {
-  &.row-wrap {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  }
-
-  &.row-nowrap {
-    -ms-flex-wrap: none;
-    flex-wrap: nowrap;
-  }
-
-  &.row-y-top {
-    -ms-flex-align: start;
-    -webkit-box-align: start;
-    align-items: flex-start;
-  }
-
-  &.row-y-bottom {
-    -ms-flex-align: end;
-    -webkit-box-align: end;
-    align-items: flex-end;
-  }
-
-  &.row-y-center {
-    -ms-flex-align: center;
-    -webkit-box-align: center;
-    align-items: center;
-  }
-
-  &.row-stretch {
-    -ms-flex-align: stretch;
-    -webkit-box-align: stretch;
-    align-items: stretch;
-  }
-
-  &.row-baseline {
-    -ms-flex-align: baseline;
-    -webkit-box-align: baseline;
-    align-items: baseline;
-  }
-
-  &.row-x-left {
-    -ms-flex-pack: start;
-    -webkit-box-pack: start;
-    justify-content: flex-start;
-  }
-
-  &.row-x-right {
-    -ms-flex-pack: end;
-    -webkit-box-pack: end;
-    justify-content: flex-end;
-  }
-
-  &.row-x-center {
-    -ms-flex-pack: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-  }
-}
-
 /* large screen column widths 
   */
 

@@ -11,32 +11,6 @@
   position: absolute;
   top: 0.8rem;
   left: 0;
-
-  &.offset {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-  }
-
-  &.scrolling {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-
-  &.sticky {
-    opacity: 0;
-    visibility: hidden;
-    background-color: var(--color-gray-19);
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    &.scrolling {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
 }
 
 .s-header__nav-wrap {
