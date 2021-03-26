@@ -1,6 +1,8 @@
 name: github pages
 
 on:
+  repository_dispatch:
+    types: [update_post]
   push:
     branches:
       - main
@@ -9,33 +11,33 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: setup node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '15.x'
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "15.x"
 
-    - name: Cache dependencies
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-    - name: install
-      run: yarn install
+      - name: install
+        run: yarn install
 
-    - name: format
-      run: yarn run format
+      - name: format
+        run: yarn run format
 
-    - name: test
-      run: yarn run test
+      - name: test
+        run: yarn run test
 
-    - name: build
-      run: yarn run build
-      env:
+      - name: build
+        run: yarn run build
+        env:
           FIRST_NAME: Mona
           middle_name: The
           Last_Name: Octocat
@@ -45,8 +47,8 @@ jobs:
           QIITA_ACCESS_TOKEN: ${{ secrets.QIITA_ACCESS_TOKEN }}
           QIITA_USERNAME: ${{ secrets.QIITA_USERNAME }}
 
-    - name: deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
