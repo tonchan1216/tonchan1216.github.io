@@ -11,100 +11,6 @@ interface WebVital {
   id: string
 }
 
-const Section = styled.section`
-  padding-top: var(--vspace-5);
-  padding-bottom: var(--vspace-3_5);
-  color: rgba(255, 255, 255, 0.8);
-  background-color: var(--color-gray-19);
-  overflow: hidden;
-  position: relative;
-
-  h3 {
-    margin-top: 0;
-    color: white;
-  }
-
-  div.row {
-    position: relative;
-  }
-
-  & > div:nth-child(2) {
-    text-align: center;
-    margin-bottom: var(--vspace-2);
-  }
-
-  & > div:nth-child(2) > .column:first-child {
-    min-height: 0;
-    min-width: 0;
-  }
-`
-const BackGround = styled.div<{ url: string }>`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.url});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-gray-19);
-    opacity: 0.8;
-  }
-`
-
-const Card = styled.div`
-  background-color: #ffffff;
-  margin: 0 1%;
-  p {
-    text-align: center;
-  }
-  .success {
-    color: var(--color-success);
-  }
-  .notice {
-    color: var(--color-notice);
-  }
-  .error {
-    color: var(--color-error);
-  }
-
-  div {
-    text-align: center;
-  }
-`
-
-const Description = styled.p`
-  font-size: 80%;
-  color: var(--color-gray-3);
-  font-style: italic;
-`
-
-const SandFor = styled.p`
-  font-size: 200%;
-  color: var(--color-btn-primary);
-  font-weight: bold;
-`
-
-const Title = styled.p`
-  color: var(--color-gray-6);
-  font-family: var(--font-2);
-`
-
 const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
   children,
   status,
@@ -219,5 +125,99 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
     </Section>
   )
 }
+
+const Section = styled.section`
+  padding-top: var(--vspace-5);
+  padding-bottom: var(--vspace-3_5);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: var(--color-gray-19);
+  overflow: hidden;
+  position: relative;
+
+  h3 {
+    margin-top: 0;
+    color: white;
+  }
+
+  div.row {
+    position: relative;
+  }
+
+  & > div:nth-child(2) {
+    text-align: center;
+    margin-bottom: var(--vspace-2);
+  }
+
+  & > div:nth-child(2) > .column:first-child {
+    min-height: 0;
+    min-width: 0;
+  }
+`
+const BackGround = styled.div<{ url: string }>`
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.url});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-gray-19);
+    opacity: 0.8;
+  }
+`
+
+const Card = styled.div`
+  background-color: #ffffff;
+  margin: 0 1%;
+  p {
+    text-align: center;
+  }
+  .success {
+    color: var(--color-success);
+  }
+  .notice {
+    color: var(--color-notice);
+  }
+  .error {
+    color: var(--color-error);
+  }
+
+  div {
+    text-align: center;
+  }
+`
+
+const Description = styled.p`
+  font-size: 80%;
+  color: var(--color-gray-3);
+  font-style: italic;
+`
+
+const SandFor = styled.p`
+  font-size: 200%;
+  color: var(--color-btn-primary);
+  font-weight: bold;
+`
+
+const Title = styled.p`
+  color: var(--color-gray-6);
+  font-family: var(--font-2);
+`
 
 export default Testimonials
