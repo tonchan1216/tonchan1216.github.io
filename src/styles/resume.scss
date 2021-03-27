@@ -22,49 +22,6 @@
 }
 
 /* ------------------------------------------------------------------- 
-   * ## resume block
-   * ------------------------------------------------------------------- */
-
-.resume-block {
-  margin-bottom: var(--vspace-1_75);
-
-  h4 {
-    line-height: 1.08;
-    margin-top: 0;
-    margin-bottom: var(--vspace-0_25);
-  }
-}
-
-.resume-block__header-meta {
-  font-family: var(--font-2);
-  font-size: calc(var(--text-size) * 1.1111);
-  font-style: italic;
-  margin-top: -0.4rem;
-  margin-bottom: var(--vspace-0_75);
-
-  span:first-child {
-    margin-right: 0.6rem;
-  }
-}
-
-.resume-block__header-date {
-  display: inline-block;
-  font-family: var(--font-1);
-  font-size: calc(var(--text-size) * 0.8889);
-  font-size: var(--text-sm);
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-text-light);
-
-  &::before {
-    content: "\2022";
-    color: var(--color-text);
-    margin-right: 0.2rem;
-  }
-}
-
-/* ------------------------------------------------------------------- 
    * responsive:
    * resume
    * ------------------------------------------------------------------- */
