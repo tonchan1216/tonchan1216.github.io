@@ -11,6 +11,24 @@ interface WebVital {
   id: string
 }
 
+interface Window {
+  // eventのため
+  gtag(
+    type: "event",
+    eventAction: string,
+    fieldObject: {
+      event_category: string
+      event_label: string
+      value: number
+      metric_id?: string
+      metric_value?: number
+      metric_delta?: number
+    },
+  ): void
+}
+
+declare let window: Window
+
 const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
   children,
   status,
@@ -44,17 +62,23 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
   const [fid, setFid] = useState(-1)
   const [lcp, setLcp] = useState(-1)
 
-  const changeValue = (data: WebVital) => {
-    if (data.name == "CLS" && cls == -1) {
-      setCls(Math.round(data.value * 10) / 10)
-    } else if (data.name == "FID" && fid == -1) {
-      setFid(Math.round(data.value))
-    } else if (data.name == "LCP" && lcp == -1) {
-      setLcp(Math.round(data.value))
-    } else {
-      console.log(data)
+  const changeValue = ({ name, delta, value, id }: WebVital) => {
+    if (name == "CLS" && cls == -1) {
+      setCls(Math.round(value * 10) / 10)
+    } else if (name == "FID" && fid == -1) {
+      setFid(Math.round(value))
+    } else if (name == "LCP" && lcp == -1) {
+      setLcp(Math.round(value))
     }
-    // console.log(data)
+
+    window.gtag("event", name, {
+      event_category: "web-vitals",
+      event_label: id,
+      value: Math.round(delta), // Use `delta` so the value can be summed.
+      metric_id: id, // Needed to aggregate events.
+      metric_value: value, // Optional.
+      metric_delta: delta, // Optional.
+    })
   }
 
   const getStatus = (metrics: string, value: number) => {
