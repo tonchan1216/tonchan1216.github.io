@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
 
-import { Content } from "../typeHelpers"
+import { Content, BackgroundBase } from "../typeHelpers"
 
 const svgStyle = {
   fill: "rgba(0, 0, 0, 1)",
@@ -72,30 +72,8 @@ const Hero: React.FC<Props> = ({ name, url, contents }) => {
   )
 }
 
-const BackgroundImage = styled.div<{ url: string }>`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.url});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
+const BackgroundImage = styled(BackgroundBase as any)`
   &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
     background: black;
     opacity: 0.5;
   }
@@ -114,4 +92,5 @@ const BackgroundImage = styled.div<{ url: string }>`
     opacity: 0.4;
   }
 `
+
 export default Hero

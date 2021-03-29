@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Loader from "react-loader-spinner"
+import { BackgroundBase } from "../typeHelpers"
 
 import { getCLS, getFID, getLCP } from "web-vitals"
 
@@ -177,30 +178,8 @@ const Section = styled.section`
     min-width: 0;
   }
 `
-const BackGround = styled.div<{ url: string }>`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.url});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
+const BackGround = styled(BackgroundBase as any)`
   &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
     background-color: var(--color-gray-19);
     opacity: 0.8;
   }
