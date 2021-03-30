@@ -72,14 +72,16 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
       setLcp(Math.round(value))
     }
 
-    window.gtag("event", name, {
-      event_category: "web-vitals",
-      event_label: id,
-      value: Math.round(delta), // Use `delta` so the value can be summed.
-      metric_id: id, // Needed to aggregate events.
-      metric_value: value, // Optional.
-      metric_delta: delta, // Optional.
-    })
+    if (typeof window.gtag !== "undefined") {
+      window.gtag("event", name, {
+        event_category: "web-vitals",
+        event_label: id,
+        value: Math.round(delta), // Use `delta` so the value can be summed.
+        metric_id: id, // Needed to aggregate events.
+        metric_value: value, // Optional.
+        metric_delta: delta, // Optional.
+      })
+    }
   }
 
   const getStatus = (metrics: string, value: number) => {
@@ -178,7 +180,7 @@ const Section = styled.section`
     min-width: 0;
   }
 `
-const BackGround = styled(BackgroundBase as any)`
+const BackGround = styled(BackgroundBase)`
   &::before {
     background-color: var(--color-gray-19);
     opacity: 0.8;

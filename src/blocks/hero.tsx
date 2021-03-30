@@ -72,7 +72,7 @@ const Hero: React.FC<Props> = ({ name, url, contents }) => {
   )
 }
 
-const BackgroundImage = styled(BackgroundBase as any)`
+const BackgroundImage = styled(BackgroundBase)`
   &::before {
     background: black;
     opacity: 0.5;

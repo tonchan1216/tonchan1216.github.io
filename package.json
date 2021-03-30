@@ -60,7 +60,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
     "@types/react-scroll": "^1.8.2",
-    "@types/styled-components": "^4.1.16",
+    "@types/styled-components": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "babel-plugin-styled-components": "^1.10.3",
@@ -81,7 +81,6 @@
     "typescript": "^3.5.2",
     "typescript-styled-plugin": "^0.14.0"
   },
-
   "lint-staged": {
     "*.{md,yaml,yml}": [
       "prettier --write",
