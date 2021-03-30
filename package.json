@@ -1,8 +1,20 @@
 {
-  "name": "gatsby-starter-typescript-graphql",
-  "description": "A Gatsby starter with typesafe GraphQL using TypeScript",
+  "name": "gatsby-typescript-graphql",
+  "description": "A Gatsby Portfolio with typesafe GraphQL using TypeScript",
   "version": "0.1.0",
-  "author": "Benedikt Franke <benedikt@franke.tech>",
+  "author": "tonchan1216",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "yarn run start",
+    "format": "prettier --write '{__mocks__,src,test}/**/*.{js,ts,tsx}'",
+    "lint": "eslint src/**/*.{js,ts,tsx}",
+    "lint:fix": "yarn run lint --fix",
+    "start": "concurrently \"gatsby develop\" \"yarn run codegen\"",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "codegen": "graphql-codegen --config graphql-codegen.yml"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
@@ -69,18 +81,7 @@
     "typescript": "^3.5.2",
     "typescript-styled-plugin": "^0.14.0"
   },
-  "scripts": {
-    "build": "gatsby build",
-    "clean": "gatsby clean",
-    "develop": "yarn run start",
-    "format": "prettier --write '{__mocks__,src,test}/**/*.{js,ts,tsx}'",
-    "lint": "eslint src/**/*.{js,ts,tsx}",
-    "lint:fix": "yarn run lint --fix",
-    "start": "concurrently \"gatsby develop\" \"yarn run codegen\"",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "codegen": "graphql-codegen --config graphql-codegen.yml"
-  },
+
   "lint-staged": {
     "*.{md,yaml,yml}": [
       "prettier --write",
