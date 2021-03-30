@@ -27,8 +27,8 @@ const Header: React.FC = () => {
     { anchor: "hero", title: "Home" },
     { anchor: "about", title: "About" },
     { anchor: "resume", title: "Resume" },
-    { anchor: "portfolio", title: "Works" },
-    { anchor: "testimonials", title: "Testimonials" },
+    { anchor: "portfolio", title: "Publication" },
+    { anchor: "testimonials", title: "Benchmark" },
   ]
 
   return (
