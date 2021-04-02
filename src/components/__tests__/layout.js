@@ -1,7 +1,7 @@
 import React from "react"
 import renderer from "react-test-renderer"
 
-import Layout from "../../src/components/layout"
+import Layout from "../layout"
 
 describe("Layout", () => {
   it("renders correctly", () => {

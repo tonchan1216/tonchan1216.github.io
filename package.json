@@ -20,7 +20,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "gatsby": "^3.0.2",
+    "gatsby": "^3.1.0",
     "gatsby-image": "^2.2.3",
     "gatsby-plugin-google-gtag": "^3.1.0",
     "gatsby-plugin-manifest": "^3.0.0",
@@ -111,21 +111,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/spawnia/gatsby-starter-typescript-graphql"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.[jt]sx?$": "<rootDir>/jest-preprocess.js"
-    },
-    "moduleNameMapper": {
-      ".+\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
-      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file-mock.js"
-    },
-    "testPathIgnorePatterns": ["node_modules", "\\.cache", "<rootDir>.*/public"],
-    "transformIgnorePatterns": ["node_modules/(?!(gatsby)/)"],
-    "globals": {
-      "__PATH_PREFIX__": ""
-    },      
-    "testURL": "http://localhost",
-    "setupFiles": ["<rootDir>/loadershim.js"]  
   }
 }
