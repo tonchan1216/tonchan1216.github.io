@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Loader from "react-loader-spinner"
-import { BackgroundBase } from "../typeHelpers"
+import { BackgroundBase } from "../styleHelpers"
+import { getStatus } from "../commonHelpers"
 
 import { getCLS, getFID, getLCP } from "web-vitals"
 
@@ -51,6 +52,10 @@ const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
 }
 
 const Testimonials: React.FC<{ url: string }> = ({ url }) => {
+  const [cls, setCls] = useState(-1)
+  const [fid, setFid] = useState(-1)
+  const [lcp, setLcp] = useState(-1)
+
   useEffect(() => {
     if (typeof window !== `undefined`) {
       getCLS(changeValue)
@@ -58,10 +63,6 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
       getLCP(changeValue)
     }
   })
-
-  const [cls, setCls] = useState(-1)
-  const [fid, setFid] = useState(-1)
-  const [lcp, setLcp] = useState(-1)
 
   const changeValue = ({ name, delta, value, id }: WebVital) => {
     if (name == "CLS" && cls == -1) {
@@ -81,41 +82,6 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
         metric_value: value, // Optional.
         metric_delta: delta, // Optional.
       })
-    }
-  }
-
-  const getStatus = (metrics: string, value: number) => {
-    if (value == -1) {
-      return "loading"
-    }
-
-    switch (metrics) {
-      case "lcp":
-        if (value > 4000) {
-          return "error"
-        } else if (value > 2500) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      case "fid":
-        if (value > 300) {
-          return "error"
-        } else if (value > 100) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      case "cls":
-        if (value > 0.25) {
-          return "error"
-        } else if (value > 0.1) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      default:
-        return "success"
     }
   }
 
