@@ -1,35 +1,11 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import Loader from "react-loader-spinner"
-import { BackgroundBase } from "../styleHelpers"
-import { getStatus } from "../commonHelpers"
-
 import { getCLS, getFID, getLCP } from "web-vitals"
 
-interface WebVital {
-  name: string
-  value: number
-  delta: number
-  id: string
-}
-
-interface Window {
-  // eventのため
-  gtag(
-    type: "event",
-    eventAction: string,
-    fieldObject: {
-      event_category: string
-      event_label: string
-      value: number
-      metric_id?: string
-      metric_value?: number
-      metric_delta?: number
-    },
-  ): void
-}
-
-declare let window: Window
+import { BackgroundBase } from "../libs/styleHelpers"
+import { getStatus } from "../libs/commonHelpers"
+import { useMetrics } from "../libs/useMetrics"
 
 const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
   children,
@@ -52,38 +28,17 @@ const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
 }
 
 const Testimonials: React.FC<{ url: string }> = ({ url }) => {
-  const [cls, setCls] = useState(-1)
-  const [fid, setFid] = useState(-1)
-  const [lcp, setLcp] = useState(-1)
+  const [cls, setCls] = useMetrics()
+  const [fid, setFid] = useMetrics()
+  const [lcp, setLcp] = useMetrics()
 
   useEffect(() => {
     if (typeof window !== `undefined`) {
-      getCLS(changeValue)
-      getFID(changeValue)
-      getLCP(changeValue)
+      getCLS(setCls)
+      getFID(setFid)
+      getLCP(setLcp)
     }
-  })
-
-  const changeValue = ({ name, delta, value, id }: WebVital) => {
-    if (name == "CLS" && cls == -1) {
-      setCls(Math.round(value * 10) / 10)
-    } else if (name == "FID" && fid == -1) {
-      setFid(Math.round(value))
-    } else if (name == "LCP" && lcp == -1) {
-      setLcp(Math.round(value))
-    }
-
-    if (typeof window.gtag !== "undefined") {
-      window.gtag("event", name, {
-        event_category: "web-vitals",
-        event_label: id,
-        value: Math.round(delta), // Use `delta` so the value can be summed.
-        metric_id: id, // Needed to aggregate events.
-        metric_value: value, // Optional.
-        metric_delta: delta, // Optional.
-      })
-    }
-  }
+  }, [])
 
   return (
     <Section id="testimonials" className="target-section">

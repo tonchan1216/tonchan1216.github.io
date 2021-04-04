@@ -3,7 +3,7 @@ import renderer from "react-test-renderer"
 import { cleanup, fireEvent, render, screen } from "@testing-library/react"
 
 import Testimonials from "../testimonials"
-import * as commonHelpers from "../../commonHelpers"
+import * as commonHelpers from "../../libs/commonHelpers"
 
 jest.mock("web-vitals", () => ({
   getCLS: jest.fn(),
