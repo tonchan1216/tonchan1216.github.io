@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react"
-import { Content } from "../typeHelpers"
+import { Content } from "../libs/typeHelpers"
 
 type Props = {
   contents: Content[]

@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
 
-import { Content } from "../typeHelpers"
-import { BackgroundBase } from "../styleHelpers"
+import { Content } from "../libs/typeHelpers"
+import { BackgroundBase } from "../libs/styleHelpers"
 
 const svgStyle = {
   fill: "rgba(0, 0, 0, 1)",
