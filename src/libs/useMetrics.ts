@@ -5,7 +5,6 @@ declare let window: Window
 export const useMetrics = (): readonly [number, (arg0: WebVital) => void] => {
   const [metrics, setMetrics] = useState(-1)
   const changeMetrics = ({ name, delta, value, id }: WebVital) => {
-    console.log(name)
     if (name == "CLS") {
       setMetrics((prev) => (prev ? Math.round(value * 10) / 10 : prev))
     } else {
