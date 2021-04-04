@@ -1,6 +1,6 @@
 import React from "react"
 import renderer from "react-test-renderer"
-import { cleanup, fireEvent, render, screen } from "@testing-library/react"
+import { cleanup, render } from "@testing-library/react"
 
 import Testimonials from "../testimonials"
 import * as commonHelpers from "../../libs/commonHelpers"
@@ -14,6 +14,7 @@ jest.mock("web-vitals", () => ({
 describe("Testimonials", () => {
   afterEach(() => {
     jest.resetAllMocks()
+    cleanup()
   })
   it("renders correctly", () => {
     const tree = renderer.create(<Testimonials />).toJSON()
@@ -22,11 +23,17 @@ describe("Testimonials", () => {
   it("getStatus: loading", () => {
     jest.spyOn(commonHelpers, "getStatus").mockReturnValue("loading")
     const { container } = render(<Testimonials />)
-    // screen.debug()
+    const loader = container.querySelectorAll('[aria-label="audio-loading"]')
+    expect(loader).toHaveLength(3)
+    const success = container.querySelectorAll(".success")
+    expect(success).toHaveLength(0)
   })
   it("getStatus: success", () => {
     jest.spyOn(commonHelpers, "getStatus").mockReturnValue("success")
     const { container } = render(<Testimonials />)
-    // screen.debug()
+    const loader = container.querySelectorAll('[aria-label="audio-loading"]')
+    expect(loader).toHaveLength(0)
+    const success = container.querySelectorAll(".success")
+    expect(success).toHaveLength(3)
   })
 })
