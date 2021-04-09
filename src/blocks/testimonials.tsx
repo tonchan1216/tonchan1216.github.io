@@ -33,11 +33,9 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
   const [lcp, setLcp] = useMetrics()
 
   useEffect(() => {
-    if (typeof window !== `undefined`) {
-      getCLS(setCls)
-      getFID(setFid)
-      getLCP(setLcp)
-    }
+    getCLS(setCls)
+    getFID(setFid)
+    getLCP(setLcp)
   }, [])
 
   return (
