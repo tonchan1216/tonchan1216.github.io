@@ -35,7 +35,7 @@ const Folio = (props: { data: Qiita }) => (
 )
 
 const Portfolio: React.FC = () => {
-  const qiita: QiitaQuery = useStaticQuery(
+  const { allQiitaPost }: QiitaQuery = useStaticQuery(
     graphql`
       query Qiita {
         allQiitaPost(
@@ -64,7 +64,7 @@ const Portfolio: React.FC = () => {
         </div>
       </div>
       <div className="row collapse block-large-1-4 block-medium-1-3 block-tab-1-2 block-500-stack">
-        {qiita.allQiitaPost.nodes.map((data: Qiita) => (
+        {allQiitaPost.nodes.map((data: Qiita) => (
           <Folio key={data.id} data={data} />
         ))}
       </div>
