@@ -5,7 +5,6 @@ import { useMetrics } from "../useMetrics"
 const TestComponent = (props) => {
   // テスト用Reactコンポーネント作成
   const [metrics, changeMetrics] = useMetrics()
-
   return (
     <div>
       <p title="metrics">{metrics}</p>
@@ -50,5 +49,14 @@ describe("useMetricsのユニットテスト", () => {
 
     fireEvent.click(getByTitle("changeValue")) // クリックイベントを発火
     expect(metrics.textContent).toEqual("1")
+  })
+  it("gtag mock", () => {
+    window.gtag = jest.fn()
+    const webvitals = { name: "gtag", delta: 1, value: 1, id: "test" }
+
+    const { getByTitle } = render(<TestComponent values={webvitals} />) // 仮想DOMにレンダリング
+
+    fireEvent.click(getByTitle("changeValue")) // クリックイベントを発火
+    expect(window.gtag).toBeCalled()
   })
 })

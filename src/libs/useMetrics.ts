@@ -5,11 +5,11 @@ declare let window: Window
 export const useMetrics = (): readonly [number, (arg0: WebVital) => void] => {
   const [metrics, setMetrics] = useState(-1)
   const changeMetrics = ({ name, delta, value, id }: WebVital) => {
-    if (name == "CLS") {
-      setMetrics((prev) => (prev ? Math.round(value * 10) / 10 : prev))
-    } else {
-      setMetrics((prev) => (prev ? Math.round(value) : prev))
-    }
+    console.log(name, "Reported")
+
+    name == "CLS"
+      ? setMetrics(Math.round(value * 10) / 10)
+      : setMetrics(Math.round(value))
 
     if (typeof window.gtag !== "undefined") {
       window.gtag("event", name, {
