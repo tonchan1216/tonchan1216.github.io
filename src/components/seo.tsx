@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import { useStaticQuery, graphql } from "gatsby"
+
 import { SiteMetaQuery } from "../graphql"
 
 type MetaProps = JSX.IntrinsicElements["meta"]

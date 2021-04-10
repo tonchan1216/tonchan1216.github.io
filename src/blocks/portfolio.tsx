@@ -1,20 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-
 import { useStaticQuery, graphql } from "gatsby"
-import { QiitaQuery } from "../graphql"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 
-interface Qiita {
-  id?: string
-  title?: string
-  likes_count?: number
-  tags?: {
-    name?: string
-  }[]
-  url?: string
-}
+import { QiitaQuery } from "../graphql"
+import { Qiita } from "../libs/typeHelpers"
 
 const Folio = (props: { data: Qiita }) => (
   <Item className="column">

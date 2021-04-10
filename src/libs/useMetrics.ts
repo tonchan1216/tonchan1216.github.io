@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { WebVital, Window } from "../libs/typeHelpers"
+
 declare let window: Window
 
 export const useMetrics = (): readonly [number, (arg0: WebVital) => void] => {

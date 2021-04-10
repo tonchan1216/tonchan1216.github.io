@@ -1,6 +1,7 @@
 import React from "react"
-import { Content } from "../libs/typeHelpers"
 import styled from "styled-components"
+
+import { Content } from "../libs/typeHelpers"
 
 type Props = {
   avatarUrl: string
