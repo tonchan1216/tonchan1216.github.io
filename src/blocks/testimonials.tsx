@@ -7,24 +7,34 @@ import { BackgroundBase } from "../libs/styleHelpers"
 import { getStatus } from "../libs/commonHelpers"
 import { useMetrics } from "../libs/useMetrics"
 
-const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
-  children,
-  status,
-}) => {
+const MetricsBock: React.FC<{
+  description: string
+  title: string
+  type: string
+  value: number
+}> = ({ type, value, title, description }) => {
+  const status = getStatus(type, value)
   const MetricsStyle = {
     fontSize: "180%",
     FontWeight: "bold",
   }
 
-  if (status == "loading") {
-    return <Loader type="TailSpin" color="#00BFFF" />
-  } else {
-    return (
-      <p style={MetricsStyle} className={status}>
-        {children}
-      </p>
-    )
-  }
+  return (
+    <Card className="column">
+      <Description>({description})</Description>
+      <SandFor>{type}</SandFor>
+      <Title>{title}</Title>
+
+      {status === "loading" ? (
+        <Loader type="TailSpin" color="#00BFFF" />
+      ) : (
+        <p style={MetricsStyle} className={status}>
+          {value}
+          {type === "CLS" ? "" : "ms"}
+        </p>
+      )}
+    </Card>
+  )
 }
 
 const Testimonials: React.FC<{ url: string }> = ({ url }) => {
@@ -49,24 +59,26 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
       </div>
 
       <div className="row">
-        <Card className="column">
-          <Description>(Loading)</Description>
-          <SandFor>LCP</SandFor>
-          <Title>Large Contentful Paint</Title>
-          <Metrics status={getStatus("lcp", lcp)}>{lcp}ms</Metrics>
-        </Card>
-        <Card className="column">
-          <Description>(Interactivy)</Description>
-          <SandFor>FID</SandFor>
-          <Title>First Input Delay</Title>
-          <Metrics status={getStatus("fid", fid)}>{fid}ms</Metrics>
-        </Card>
-        <Card className="column">
-          <Description>(Visual Stability)</Description>
-          <SandFor>CLS</SandFor>
-          <Title>Cumulative Layout Shift</Title>
-          <Metrics status={getStatus("cls", cls)}>{cls}</Metrics>
-        </Card>
+        <MetricsBock
+          description="Loading"
+          type="LCP"
+          title="Large Contentful Paint"
+          value={lcp}
+        />
+
+        <MetricsBock
+          description="Interactivy"
+          type="FID"
+          title="First Input Delay"
+          value={fid}
+        />
+
+        <MetricsBock
+          description="Visual Stability"
+          type="CLS"
+          title="Cumulative Layout Shift"
+          value={cls}
+        />
       </div>
     </Section>
   )
