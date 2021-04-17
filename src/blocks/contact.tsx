@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react"
+import styled from "styled-components"
 
 import { Content } from "../libs/typeHelpers"
 
@@ -26,17 +27,21 @@ const Contact: React.FC<Props> = ({ contents }) => (
       <div className="column large-4 medium-12">
         <div className="row contact-infos">
           <div className="column large-12">
-            <a
+            <Button
               href="mailto:sayhello@ceevee.com"
               className="mailtoui btn btn--primary h-full-width"
             >
               Let's Talk
-            </a>
+            </Button>
           </div>
         </div>
       </div>
     </div>
   </section>
 )
+
+const Button = styled.a`
+  margin-top: var(--vspace-0_75);
+`
 
 export default Contact
