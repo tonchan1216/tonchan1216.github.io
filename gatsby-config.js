@@ -51,7 +51,7 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     {
       resolve: "gatsby-source-graphcms",
       options: {
@@ -130,6 +130,12 @@ module.exports = {
           // https://purgecss.com/configuration.html#options
           // safelist: [], // Don't remove this selector
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
+      options: {
+        analyzerMode: "static",
       },
     },
   ],
