@@ -60,7 +60,7 @@ const Resume: React.FC = () => {
   )
 
   return (
-    <section id="resume" className="s-resume target-section">
+    <Section id="resume" className="s-resume target-section">
       <div className="row s-resume__section">
         <div className="column large-3 tab-12">
           <h3 className="section-header-allcaps">Career</h3>
@@ -103,9 +103,35 @@ const Resume: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
+
+const Section = styled.section`
+  background-color: white;
+  padding-top: calc(6 * var(--space));
+  padding-bottom: var(--vspace-4);
+
+  .s-resume__section {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--vspace-0_75);
+    margin-bottom: var(--vspace-2_5);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    padding-top: var(--vspace-4);
+
+    .s-resume__section .column:first-child {
+      text-align: center;
+    }
+  }
+`
 
 const Progress = styled.div<{ rate: number }>`
   background: var(--color-gray-3);
