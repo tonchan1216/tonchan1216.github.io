@@ -9,7 +9,6 @@ import Hero from "../blocks/hero"
 import About from "../blocks/about"
 import Resume from "../blocks/resume"
 import Portfolio from "../blocks/portfolio"
-import Cta from "../blocks/cta"
 import Testimonials from "../blocks/testimonials"
 import Contact from "../blocks/contact"
 
@@ -57,10 +56,9 @@ const IndexPage: React.FC = () => {
         avatarUrl={github.viewer.avatarUrl}
         contents={contents.nodes.filter((data) => data.key == "about_me")}
       />
+      <Testimonials url={testbg.publicURL} />
       <Resume />
       <Portfolio />
-      <Cta contents={contents.nodes.filter((data) => data.key == "cta")} />
-      <Testimonials url={testbg.publicURL} />
       <Contact
         contents={contents.nodes.filter(
           (data) => data.key == "contact_details",

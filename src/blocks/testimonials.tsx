@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
-import Loader from "react-loader-spinner"
 import { getCLS, getFID, getLCP } from "web-vitals"
+import GaugeChart from "react-gauge-chart"
 
 import { BackgroundBase } from "../libs/styleHelpers"
-import { getStatus } from "../libs/commonHelpers"
+import { getStatus, getPercentage, getLength } from "../libs/commonHelpers"
 import { useMetrics } from "../libs/useMetrics"
 
 const MetricsBock: React.FC<{
@@ -14,9 +14,17 @@ const MetricsBock: React.FC<{
   value: number
 }> = ({ type, value, title, description }) => {
   const status = getStatus(type, value)
+  const percentage = status == "loading" ? 0 : getPercentage(type, value)
+
   const MetricsStyle = {
     fontSize: "180%",
     FontWeight: "bold",
+  }
+
+  const chartStyle = {
+    // height: 200,
+    width: "200px",
+    margin: "0 auto",
   }
 
   return (
@@ -25,14 +33,19 @@ const MetricsBock: React.FC<{
       <SandFor>{type}</SandFor>
       <Title>{title}</Title>
 
-      {status === "loading" ? (
-        <Loader type="TailSpin" color="#00BFFF" />
-      ) : (
-        <p style={MetricsStyle} className={status}>
-          {value}
-          {type === "CLS" ? "" : "ms"}
-        </p>
-      )}
+      <GaugeChart
+        id={"gauge-chart-" + type}
+        style={chartStyle}
+        percent={percentage}
+        arcsLength={getLength(type)}
+        colors={["#5BE12C", "#F5CD19", "#EA4228"]}
+        hideText={true}
+      />
+
+      <p style={MetricsStyle} className={status}>
+        {status === "loading" ? "-" : value}
+        {type === "CLS" ? "" : "ms"}
+      </p>
     </Card>
   )
 }
@@ -120,7 +133,7 @@ const BackGround = styled(BackgroundBase)`
 
 const Card = styled.div`
   background-color: #ffffff;
-  margin: 0 1%;
+  margin: 1%;
   p {
     text-align: center;
   }
