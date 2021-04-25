@@ -28,7 +28,7 @@ const Contact: React.FC<Props> = ({ contents }) => (
         <div className="row contact-infos">
           <div className="column large-12">
             <Button
-              href="mailto:sayhello@ceevee.com"
+              href="https://coconala.com/services/1593368?ref=profile_top_service"
               className="mailtoui btn btn--primary h-full-width"
             >
               Let's Talk

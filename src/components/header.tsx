@@ -25,9 +25,9 @@ const Header: React.FC = () => {
   const menu = [
     { anchor: "hero", title: "Home" },
     { anchor: "about", title: "About" },
+    { anchor: "testimonials", title: "Benchmark" },
     { anchor: "resume", title: "Resume" },
     { anchor: "portfolio", title: "Publication" },
-    { anchor: "testimonials", title: "Benchmark" },
   ]
 
   return (

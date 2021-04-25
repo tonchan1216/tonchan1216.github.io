@@ -14,14 +14,17 @@ const MetricsBock: React.FC<{
   value: number
 }> = ({ type, value, title, description }) => {
   const status = getStatus(type, value)
+  const percentage = status == "loading" ? 0 : getPercentage(type, value)
+
   const MetricsStyle = {
     fontSize: "180%",
     FontWeight: "bold",
   }
-  const percentage = status == "loading" ? 0 : getPercentage(type, value)
 
   const chartStyle = {
-    // height: 250,
+    // height: 200,
+    width: "200px",
+    margin: "0 auto",
   }
 
   return (
@@ -30,17 +33,17 @@ const MetricsBock: React.FC<{
       <SandFor>{type}</SandFor>
       <Title>{title}</Title>
 
-      <p style={MetricsStyle} className={status}>
-        <GaugeChart
-          id="gauge-chart1"
-          style={chartStyle}
-          percent={percentage}
-          arcsLength={getLength(type)}
-          colors={["#5BE12C", "#F5CD19", "#EA4228"]}
-          hideText={true}
-        />
+      <GaugeChart
+        id={"gauge-chart-" + type}
+        style={chartStyle}
+        percent={percentage}
+        arcsLength={getLength(type)}
+        colors={["#5BE12C", "#F5CD19", "#EA4228"]}
+        hideText={true}
+      />
 
-        {value}
+      <p style={MetricsStyle} className={status}>
+        {status === "loading" ? "-" : value}
         {type === "CLS" ? "" : "ms"}
       </p>
     </Card>
@@ -130,7 +133,7 @@ const BackGround = styled(BackgroundBase)`
 
 const Card = styled.div`
   background-color: #ffffff;
-  margin: 0 1%;
+  margin: 1%;
   p {
     text-align: center;
   }

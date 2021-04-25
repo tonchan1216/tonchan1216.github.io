@@ -57,10 +57,10 @@ const IndexPage: React.FC = () => {
         avatarUrl={github.viewer.avatarUrl}
         contents={contents.nodes.filter((data) => data.key == "about_me")}
       />
+      <Testimonials url={testbg.publicURL} />
       <Resume />
       <Portfolio />
-      <Cta contents={contents.nodes.filter((data) => data.key == "cta")} />
-      <Testimonials url={testbg.publicURL} />
+      {/* <Cta contents={contents.nodes.filter((data) => data.key == "cta")} /> */}
       <Contact
         contents={contents.nodes.filter(
           (data) => data.key == "contact_details",
