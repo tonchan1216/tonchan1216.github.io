@@ -40,8 +40,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `The personal website of tonchan1216`,
+        short_name: `portfolio tonchan`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
