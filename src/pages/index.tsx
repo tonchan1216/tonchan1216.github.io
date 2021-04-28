@@ -1,16 +1,18 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { IndexQuery } from "../graphql"
+import loadable from "@loadable/component"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import Hero from "../blocks/hero"
 import About from "../blocks/about"
-import Resume from "../blocks/resume"
-import Portfolio from "../blocks/portfolio"
 import Testimonials from "../blocks/testimonials"
-import Contact from "../blocks/contact"
+// lazy load
+const Resume = loadable(() => import("../blocks/resume"))
+const Portfolio = loadable(() => import("../blocks/portfolio"))
+const Contact = loadable(() => import("../blocks/contact"))
 
 const IndexPage: React.FC = () => {
   const {
