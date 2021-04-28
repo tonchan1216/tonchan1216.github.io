@@ -13,7 +13,7 @@ const About: React.FC<Props> = ({ avatarUrl, contents }) => {
     <Section id="about" className="target-section">
       <div className="row">
         <AboutHeader className="column large-3 tab-12">
-          <Avatar src={avatarUrl} alt="avatar" />
+          <Avatar src={avatarUrl} alt="avatar" width="100px" height="100px" />
         </AboutHeader>
         <div className="column large-9 tab-12">
           <h3>About Me</h3>
@@ -42,22 +42,8 @@ const Section = styled.section`
 `
 
 const Avatar = styled.img`
-  width: var(--vspace-5);
-  height: var(--vspace-5);
-  border: 1.6rem solid rgba(255, 255, 255, 0.02);
+  border: 1.2rem solid rgba(255, 255, 255, 0.02);
   border-radius: 50%;
-
-  @media screen and (max-width: 1200px) {
-    width: var(--vspace-4_5);
-    height: var(--vspace-4_5);
-    border-width: 1.4rem;
-  }
-
-  @media screen and (max-width: 900px) {
-    width: var(--vspace-4);
-    height: var(--vspace-4);
-    border-width: 1.2rem;
-  }
 `
 
 const AboutHeader = styled.div`
