@@ -68,6 +68,7 @@ const SEO = ({ title, links = [] }: SEOProps): JSX.Element => {
   return (
     <HelmetProvider>
       <Helmet>
+        <html lang={siteMetadata.lang} />
         <meta httpEquiv="content-language" content={siteMetadata.lang} />
         <title>
           {title} | {siteMetadata.title}

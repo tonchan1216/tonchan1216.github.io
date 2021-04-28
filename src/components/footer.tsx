@@ -10,12 +10,12 @@ const Footer: React.FC = () => (
       <div className="column large-4 medium-6 w-1000-stack s-footer__social-block">
         <ul className="s-footer__social">
           <li>
-            <a href="#0">
+            <a href="https://github.com/tonchan1216">
               <FontAwesomeIcon icon={faGithub} />
             </a>
           </li>
           <li>
-            <a href="#0">
+            <a href="https://jp.linkedin.com/">
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
           </li>

@@ -36,7 +36,7 @@ const Hero: React.FC<Props> = ({ name, url, contents }) => {
               <a href="https://github.com/tonchan1216">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
-              <a href="#0">
+              <a href="https://jp.linkedin.com/">
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
             </div>

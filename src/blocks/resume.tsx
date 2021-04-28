@@ -14,7 +14,7 @@ const SkillBar = (props: Skill): JSX.Element => (
 )
 
 const ResumeBlock = (props: { data: Item }) => (
-  <div className="resume-block">
+  <div>
     <ResumeHeader>
       <h3>{props.data.title}</h3>
       <p>
@@ -60,7 +60,7 @@ const Resume: React.FC = () => {
   )
 
   return (
-    <Section id="resume" className="s-resume target-section">
+    <Section id="resume" className="target-section">
       <div className="row s-resume__section">
         <div className="column large-3 tab-12">
           <h3 className="section-header-allcaps">Career</h3>
@@ -88,7 +88,7 @@ const Resume: React.FC = () => {
           <h3 className="section-header-allcaps">Skills</h3>
         </div>
         <div className="column large-9 tab-12">
-          <div className="resume-block">
+          <div>
             <p>These are my skill set, But I'll update more and more...</p>
 
             <SkillFat>

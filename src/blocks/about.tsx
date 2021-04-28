@@ -10,12 +10,12 @@ type Props = {
 
 const About: React.FC<Props> = ({ avatarUrl, contents }) => {
   return (
-    <Section id="about" className="s-about target-section">
+    <Section id="about" className="target-section">
       <div className="row">
         <AboutHeader className="column large-3 tab-12">
-          <Avatar className="s-about__pic" src={avatarUrl} alt="avatar" />
+          <Avatar src={avatarUrl} alt="avatar" />
         </AboutHeader>
-        <div className="column large-9 tab-12 s-about__content">
+        <div className="column large-9 tab-12">
           <h3>About Me</h3>
           <div dangerouslySetInnerHTML={{ __html: contents[0].rich.html }} />
         </div>
