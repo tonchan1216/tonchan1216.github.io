@@ -35,10 +35,10 @@ const IndexPage: React.FC = () => {
           }
         }
       }
-      herobg: file(name: { eq: "header-bg-3000" }) {
+      herobg: file(name: { eq: "header-bg-origin" }) {
         publicURL
       }
-      testbg: file(name: { eq: "testimonials-bg-3000" }) {
+      testbg: file(name: { eq: "testimonials-bg-origin" }) {
         publicURL
       }
     }
