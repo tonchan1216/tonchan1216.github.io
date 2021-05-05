@@ -26,3 +26,7 @@ public
 /src/graphql.ts
 
 .vscode
+
+coverage
+
+__snapshots__

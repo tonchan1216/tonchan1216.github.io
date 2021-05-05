@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react"
-import { Content } from "../typeHelpers"
+import styled from "styled-components"
+
+import { Content } from "../libs/typeHelpers"
 
 type Props = {
   contents: Content[]
@@ -25,17 +27,21 @@ const Contact: React.FC<Props> = ({ contents }) => (
       <div className="column large-4 medium-12">
         <div className="row contact-infos">
           <div className="column large-12">
-            <a
-              href="mailto:sayhello@ceevee.com"
+            <Button
+              href="https://coconala.com/services/1593368?ref=profile_top_service"
               className="mailtoui btn btn--primary h-full-width"
             >
               Let's Talk
-            </a>
+            </Button>
           </div>
         </div>
       </div>
     </div>
   </section>
 )
+
+const Button = styled.a`
+  margin-top: var(--vspace-0_75);
+`
 
 export default Contact

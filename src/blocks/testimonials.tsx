@@ -1,96 +1,65 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
-import Loader from "react-loader-spinner"
-
 import { getCLS, getFID, getLCP } from "web-vitals"
+import GaugeChart from "react-gauge-chart"
 
-interface WebVital {
-  name: string
+import { BackgroundBase } from "../libs/styleHelpers"
+import { getStatus, getPercentage, getLength } from "../libs/commonHelpers"
+import { useMetrics } from "../libs/useMetrics"
+
+const MetricsBock: React.FC<{
+  description: string
+  title: string
+  type: string
   value: number
-  delta: number
-  id: string
-}
+}> = ({ type, value, title, description }) => {
+  const status = getStatus(type, value)
+  const percentage = status == "loading" ? 0 : getPercentage(type, value)
 
-const Metrics: React.FC<{ children: React.ReactNode; status: string }> = ({
-  children,
-  status,
-}) => {
   const MetricsStyle = {
     fontSize: "180%",
     FontWeight: "bold",
   }
 
-  if (status == "loading") {
-    return <Loader type="TailSpin" color="#00BFFF" />
-  } else {
-    return (
-      <p style={MetricsStyle} className={status}>
-        {children}
-      </p>
-    )
+  const chartStyle = {
+    // height: 200,
+    width: "200px",
+    margin: "0 auto",
   }
+
+  return (
+    <Card className="column">
+      <Description>({description})</Description>
+      <SandFor>{type}</SandFor>
+      <Title>{title}</Title>
+
+      <GaugeChart
+        id={"gauge-chart-" + type}
+        style={chartStyle}
+        percent={percentage}
+        arcsLength={getLength(type)}
+        colors={["#5BE12C", "#F5CD19", "#EA4228"]}
+        hideText={true}
+      />
+
+      <p style={MetricsStyle} className={status}>
+        {status === "loading" ? "-" : value}
+        {type === "CLS" ? "" : "ms"}
+      </p>
+    </Card>
+  )
 }
 
 const Testimonials: React.FC<{ url: string }> = ({ url }) => {
+  const [cls, setCls] = useMetrics()
+  const [fid, setFid] = useMetrics()
+  const [lcp, setLcp] = useMetrics()
+
   useEffect(() => {
-    if (typeof window !== `undefined`) {
-      getCLS(changeValue)
-      getFID(changeValue)
-      getLCP(changeValue)
-    }
-  })
-
-  const [cls, setCls] = useState(-1)
-  const [fid, setFid] = useState(-1)
-  const [lcp, setLcp] = useState(-1)
-
-  const changeValue = (data: WebVital) => {
-    if (data.name == "CLS" && cls == -1) {
-      setCls(Math.round(data.value * 10) / 10)
-    } else if (data.name == "FID" && fid == -1) {
-      setFid(Math.round(data.value))
-    } else if (data.name == "LCP" && lcp == -1) {
-      setLcp(Math.round(data.value))
-    } else {
-      console.log(data)
-    }
-    // console.log(data)
-  }
-
-  const getStatus = (metrics: string, value: number) => {
-    if (value == -1) {
-      return "loading"
-    }
-
-    switch (metrics) {
-      case "lcp":
-        if (value > 4000) {
-          return "error"
-        } else if (value > 2500) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      case "fid":
-        if (value > 300) {
-          return "error"
-        } else if (value > 100) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      case "cls":
-        if (value > 0.25) {
-          return "error"
-        } else if (value > 0.1) {
-          return "notice"
-        } else {
-          return "success"
-        }
-      default:
-        return "success"
-    }
-  }
+    getCLS(setCls)
+    getFID(setFid)
+    getLCP(setLcp)
+  }, [])
 
   return (
     <Section id="testimonials" className="target-section">
@@ -103,24 +72,26 @@ const Testimonials: React.FC<{ url: string }> = ({ url }) => {
       </div>
 
       <div className="row">
-        <Card className="column">
-          <Description>(Loading)</Description>
-          <SandFor>LCP</SandFor>
-          <Title>Large Contentful Paint</Title>
-          <Metrics status={getStatus("lcp", lcp)}>{lcp}ms</Metrics>
-        </Card>
-        <Card className="column">
-          <Description>(Interactivy)</Description>
-          <SandFor>FID</SandFor>
-          <Title>First Input Delay</Title>
-          <Metrics status={getStatus("fid", fid)}>{fid}ms</Metrics>
-        </Card>
-        <Card className="column">
-          <Description>(Visual Stability)</Description>
-          <SandFor>CLS</SandFor>
-          <Title>Cumulative Layout Shift</Title>
-          <Metrics status={getStatus("cls", cls)}>{cls}</Metrics>
-        </Card>
+        <MetricsBock
+          description="Loading"
+          type="LCP"
+          title="Large Contentful Paint"
+          value={lcp}
+        />
+
+        <MetricsBock
+          description="Interactivy"
+          type="FID"
+          title="First Input Delay"
+          value={fid}
+        />
+
+        <MetricsBock
+          description="Visual Stability"
+          type="CLS"
+          title="Cumulative Layout Shift"
+          value={cls}
+        />
       </div>
     </Section>
   )
@@ -153,30 +124,8 @@ const Section = styled.section`
     min-width: 0;
   }
 `
-const BackGround = styled.div<{ url: string }>`
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.url});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
+const BackGround = styled(BackgroundBase)`
   &::before {
-    display: block;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
     background-color: var(--color-gray-19);
     opacity: 0.8;
   }
@@ -184,7 +133,7 @@ const BackGround = styled.div<{ url: string }>`
 
 const Card = styled.div`
   background-color: #ffffff;
-  margin: 0 1%;
+  margin: 1%;
   p {
     text-align: center;
   }

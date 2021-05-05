@@ -1,6 +1,7 @@
 import React from "react"
 import { Helmet, HelmetProvider } from "react-helmet-async"
 import { useStaticQuery, graphql } from "gatsby"
+
 import { SiteMetaQuery } from "../graphql"
 
 type MetaProps = JSX.IntrinsicElements["meta"]
@@ -67,6 +68,7 @@ const SEO = ({ title, links = [] }: SEOProps): JSX.Element => {
   return (
     <HelmetProvider>
       <Helmet>
+        <html lang={siteMetadata.lang} />
         <meta httpEquiv="content-language" content={siteMetadata.lang} />
         <title>
           {title} | {siteMetadata.title}

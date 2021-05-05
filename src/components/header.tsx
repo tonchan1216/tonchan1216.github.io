@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-// import styled from "styled-components"
 import { Link } from "react-scroll"
 
 const Menu = (props: {
@@ -26,9 +25,9 @@ const Header: React.FC = () => {
   const menu = [
     { anchor: "hero", title: "Home" },
     { anchor: "about", title: "About" },
+    { anchor: "testimonials", title: "Benchmark" },
     { anchor: "resume", title: "Resume" },
-    { anchor: "portfolio", title: "Works" },
-    { anchor: "testimonials", title: "Testimonials" },
+    { anchor: "portfolio", title: "Publication" },
   ]
 
   return (
