@@ -1,4 +1,4 @@
-import { getStatus } from "../commonHelpers"
+import { getStatus, getLength } from "../commonHelpers"
 
 describe("getStatus", () => {
   it("loading", () => {
@@ -23,5 +23,11 @@ describe("getStatus", () => {
   })
   it("default success", () => {
     expect(getStatus("test", 2500)).toEqual("success")
+  })
+})
+
+describe("getLength", () => {
+  it("default", () => {
+    expect(getLength("none")).toEqual([0.3, 0.5, 0.2])
   })
 })

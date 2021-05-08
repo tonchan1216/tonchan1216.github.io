@@ -23,16 +23,12 @@ describe("Testimonials", () => {
   it("getStatus: loading", () => {
     jest.spyOn(commonHelpers, "getStatus").mockReturnValue("loading")
     const { container } = render(<Testimonials />)
-    const loader = container.querySelectorAll('[aria-label="audio-loading"]')
-    expect(loader).toHaveLength(3)
     const success = container.querySelectorAll(".success")
     expect(success).toHaveLength(0)
   })
   it("getStatus: success", () => {
     jest.spyOn(commonHelpers, "getStatus").mockReturnValue("success")
     const { container } = render(<Testimonials />)
-    const loader = container.querySelectorAll('[aria-label="audio-loading"]')
-    expect(loader).toHaveLength(0)
     const success = container.querySelectorAll(".success")
     expect(success).toHaveLength(3)
   })
