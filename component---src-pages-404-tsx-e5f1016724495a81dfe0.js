@@ -1,2 +1,0 @@
-(self.webpackChunkgatsby_starter_typescript_graphql=self.webpackChunkgatsby_starter_typescript_graphql||[]).push([[218],{938:function(t,e,r){"use strict";r.r(e);var a=r(7294),n=r(7145),s=r(7431);e.default=function(){return a.createElement(n.Z,null,a.createElement(s.Z,{title:"404: Not found"}),a.createElement("h1",null,"NOT FOUND"),a.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}}]);
-//# sourceMappingURL=component---src-pages-404-tsx-e5f1016724495a81dfe0.js.map
